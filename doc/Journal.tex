@@ -249,7 +249,7 @@ the proposed designs are broken into 32 discrete angles in $\theta$ resulting in
 The RSM design is to be optimized for a $^{137}$Cs point source located at 36 inches from the center of the detector, mimicking Logan et. al's setup \cite{Logan2017}.  
 To simulate the relative source rotation in MCNP, the mask is stationary, while the source is rotated in spherical coordinates every degree for $\theta$ from 0 to $348.75^\circ$ and for each $\phi$ from 5.625$^\circ$ to $168.75^\circ$.  
 The modeled NaI detector includes a 1/8 inch 2024 Aluminum alloy sleeve on which the acrylic RSM is placed. 
-The maximum diameter of the RSM depends on the methodology, but the maximum mask thickness is a constant 7.87 inches (20 cm).  
+The maximum width of the RSM depends on the methodology, but the maximum mask thickness is a constant 7.87 inches (20 cm).  
 A sphere of air surrounds the source and detector.  
 To increase the solution convergence rate, particles were emitted within a $27.26^\circ$ half angle cone extending from the source to the detector's center.  
 This variance reduction technique assumes that the effect of the few particles that 
@@ -258,19 +258,15 @@ In addition, a 0.095 inch air gap between the mask and aluminum sleeve constrain
 Finally, due to manufacturing constraints, each mask angle must have a non-zero thickness.
 
 \subsection{Design Assumptions and Limitations}
-% This paragraph in general has me a bit confused.  I added the "detector-mask-source" geometry as I think this is what was being referred to.   
 It is assumed that the detector-mask-source geometry is related to the DRC and that geometry can be reconstructed using the DRC.
 Qualitative studies of this correlation showed that, in general, this assumption is valid with two qualifications.  
-%I am not sure how the first qualificiation fits into the preceeding statements.  Is the point that in contrast to Fitzgerald's design assumptions?
-First, a discontinuous geometry results in a continuous DRC. 
+First, a discontinuous geometry results in a continuous DRC due to correlations with neighboring rotations. 
 % Here, I'd start with stating the qualification, then explaining it. 
-To understand the next qualification, define a cell to be a rectangular prism with a given thickness extending from the centroid of the detector (outside of the aluminum sleeve) in a given direction.
+Second, while the RSM may offer an increase in the total counts, it comes with a limit on the spacial resolution. 
+To understand this in detail, define a cell to be a rectangular prism with a given thickness extending from the centroid of the detector (outside of the aluminum sleeve) in a given direction.
 Since the cells do not have impenetrable walls, particles from one source position enter cells pointed at other positions.  
-% Is it the increase in scatters that leads to a higher number of counts or the reduction in photon energy that leads to a higher interaction probability?  As written, I read it as scatters are preferentially towards the detector, or that there is some multiplication happening, both of which aren't true.
-In fact, this phenomena is one of the desirable characteristics of FitzGerald's design as an increase in scattered particles can increase the total number of counts seen by the detector.  
-Unfortunately, there is a corresponding limit to the spatial resolution.  
-% Solid angle wrt to what?  It seems like this is stating that neighboring rotation angles can have a high degree of correlation depending on the angle discretization.  This limits the directional resoulution of any design.  Is that correct?
-When the solid angle for a cell becomes too small, it is possible that the source does not resemble a point source, but a distributed source (which spans multiple cells) as neighboring cells also include a strong response.
+In fact, this phenomena is one of the desirable characteristics of FitzGerald's design as an increase in scattered particles can increase the total number of counts seen by the detector thereby increasing the efficiency.  
+However, if the cells are too small relative to the distance of the source, then neighboring cells may see a response comparable to the cell located between the detector and source.
 
 To best enable source direction determination, a unique set of DRCs must be obtained. 
 The complete set of DRCs for all rotations angles forms the design response matrix (DRM).
@@ -324,9 +320,8 @@ Other coupling systems were evaluated.
 However, the best results corresponding to the system show in Fig.~\ref{fig:stiff}.  
 
 Then, an eigenvalue problem is solved resulting in $n$ orthonormal eigenvectors used to represent the geometry for initial position $\theta=0$ and all initial $phi$ positions.  
-As the first vector tends to be planar motion (aka a cyclical vector) it is not chosen.  
+As the first vector tends to be planar motion (a cyclical vector) it is not chosen.  
 This elimination results in a matrix formed by eigenvectors $2...m+1$.  
-% I am missing something on the transition from the previous sentence to the next that could use some clarification.
 However, observations led to the conclusion that the orthogonal linear independence for $\theta=0$ caused some high $M$ values when considering all initial $\theta$ positions.  
 Introducing linear dependence to the $\theta=0$ matrix was seen to result in decreased $M$ values for $\theta\neq 0$ combinations.  
 To introduce linear dependence, a modified Gram-Schmidt orthogonality approach is used.  Specifically, 
