@@ -309,6 +309,7 @@ The eigenvector approach solves a mass normalized eigenvalue problem, the binary
 \subsubsection{Eigenvector Approach}
 The eigenvector approach creates a basis set, which may be used to define the geometry space.  
 % The replication of the k variable is unfortunate.
+% Replication removed except in proof
 First, $n$ $k$ values are chosen, where $k$ is the spring constant.  
 These values are then placed in a stiffness matrix corresponding to the coupled spring-mass problem shown in Fig.\ref{fig:stiff}.  
 The mass is assumed to be normalized.  
@@ -322,12 +323,13 @@ Other methods of coupling could be introduced if desired.
 \label{fig:stiff}
 \end{figure}
 
-Note that the values chosen do not need to represent physical systems (e.g. negative stiffness values are acceptable).  Thus, systems with positive, negative, and a combination of both were explored.  In addition, stiffness coupling between both one and one and two neighboring masses was studied.  
-% Note, I'll double check the forms of coupling I considered
+Note that the values chosen do not need to represent physical systems (e.g. negative stiffness values are acceptable).  Thus, systems with positive, negative, and a combination of both were explored.  Two options were considered in coupling the masses with springs.  First, springs were added to couple the neighboring masses on the right and left.  
+Both wall and cyclically symmetric (the last mass is coupled to the first) boundary conditions were tested.  The second type coupled the two neighboring masses on the left and right with wall
+boundary conditions.
 % This statement should be expounded upon to at the very least say which systems were explored.  Why were some of the other systems not included?
 % Does this satisfy your comment?  For brevity only, the best results are discussed - the other systems produced higher MAC numbers
-As an example, Fig.~\ref{fig:stiff} shows the spring-mass system with springs between one and two neighboring masses 
-that is further discussed in Section~\ref{sec:Eval}.
+As an example, Fig.~\ref{fig:stiff} shows the spring-mass system with springs connecting two neighboring masses with wall boundary conditions
+that is further discussed in Section~\ref{sec:Eval}.  For brevity, the other coupling systems are not shown as the results were not optimal.
 
 Then, an eigenvalue problem is solved resulting in $n$ orthonormal eigenvectors used to represent the geometry for initial position $\theta=0$ and all initial $phi$ positions.  
 As the first vector tends to be planar motion (a cyclical vector) it is not chosen.  
@@ -404,9 +406,9 @@ The first is the modal assurance criterion (MAC), which is a normalized number t
 A MAC value of zero indicates the two vectors are orthogonal, while a value of one indicates that they are identical.  
 For this application, it is desirable that the curve generated at each initial source position be orthogonal - a.k.a. unique - to the others.  
 Let this curve be denoted $\mathbf{DRC}_{i,j},$ where $i=0,1,...,n$ is the initial $\theta$ and $j=0,1,...,m$ is the initial $\phi$ index relative to a reference location on the mask.  
-Since the mask rotates, the $i^{th}$ DRC will be identical to the $k^{th}$ DRC shifted by $k-i$ indices.  
+Since the mask rotates, the $i^{th}$ DRC will be identical to the $g^{th}$ DRC shifted by $h-i$ indices.  
 A negative number corresponds to a shift to the left and a positive number a shift to the right.  
-This property greatly impacts the mask design as any periodic vector with respect to $\theta$ will then result in duplicate $i$ and $k$ DRCs.  
+This property greatly impacts the mask design as any periodic vector with respect to $\theta$ will then result in duplicate $i$ and $g$ DRCs.  
 The duplication due to periodicity would fail to meet the design's uniqueness requirements.
 
 Logan's work established a connection between the measured and the simulated DRCs.
@@ -445,17 +447,18 @@ Note that the average, minimum, and maximum MAC evaluations remain the same for 
 Thus, no $\theta$ shifting needs to be considered in the following formulations. 
 The optimal design should have low $M$ and $A$ values.
 
-The second criteria measures the RSM's average efficiency.  
+The second criteria measures the RSM's average efficiency over all initial $\theta$ and $\phi$ positions.  
 A high-efficiency design produces more accurate results in less measurement time, an important factor to consider for the intended applications of the RSM.  
 This is calculated as 
 
 % I do not understand the n m in the denominator.
+% Reworded to express that n and m cause epsilon to be the average efficiency over all the initial positions.
 \begin{equation}
 \epsilon=\frac{\sum_{i,j}\mathbf{DRM}_{red}}{n\ m},
 \label{eq:avgcell}
 \end{equation}
 
-\noindent where $n$ is \textbf{???} and $m$ is \textbf{???}.
+\noindent where $n$ is the number of $\theta$ and $m$ is number of $\phi$ discritizations.
 Note, this is not the absolute detection efficiency as the spectra obtained remove the < 200~keV counts.
 
 The final evaluation criterion focuses on the design's sensitivity (ability to create large variations in DRCs).  
@@ -495,9 +498,10 @@ The proposed design methodologies produced the geometries shown in Figs.~\ref{fi
 The binary pattern was constructed to have a fin that spirals around the mask.  
 As it is not possible to have the fin completely cover the mask geometry, four other vectors were added to create the necessary basis.
 
-The eigenvector approach used 32 $k$ values from 0.1 to -0.2999 in increments of -0.0129. 
+The eigenvector approach used 32 $k$ values from 0.1 to -0.2999 in increments of -0.0129 with stiffness coupling to the nearest two neighbors on both sides of the mass.
 $c$ was determined to be 0.999 from minimization of the design surface depicted in Fig~\ref{fig:surf}.  
 % It is not inherently obvious - to me at least - that this is beneficial or required. A brief explanation may be warranted. 
+% Which part?  c?  We know the vectors must be linearly dependent.  However, we can control how much of the other vectors we add by changing c.
 Other coupled systems did not have an optimal $c$ value close to one.
 
 The FitzGerald's RSM was used as a baseline to establish design improvement for the RSM designs shown in Figs.~\ref{fig:EVGeo} to \ref{fig:HadGeo}.  
@@ -554,6 +558,7 @@ Recall that the Hadamard values correspond to those obtained without shifting ve
 
 % Just a comment: In contrast to Olesen's work, these results indicate that a higher degree of DRC uniqueness is obtained by using the Compton events.
 % Yes, I do have some preliminary Compton study results from this summer that it would be good to get your thoughts on as we look at neutrons.  I'll send them to you later this weekend.
+% Update: Sent...
 \begin{table}[ht]
 \caption{Evaluation criteria comparisons from the original design and the three proposed designs from this work.} % title of Table
 \centering % used for centering table
@@ -610,7 +615,7 @@ Further exploration of this space and its refinement may produce a geometry with
 
 \section{Acknowledgment}
 This work was supported though the Air Force Summer Faculty Program and the Air Force Institute of Technology.  
-The author would to thank Dr. Ashley Holland and Dr. Adam Cahill for their assistance and insightful input to this work.
+The authors would to thank Dr. Ashley Holland and Dr. Adam Cahill for their assistance and insightful input to this work.
 
 \appendix
 
