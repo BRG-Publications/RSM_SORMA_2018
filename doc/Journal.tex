@@ -246,8 +246,6 @@ Each of these methods is based on using a Hadamard matrix for the mask design.
 \subsection{Basic Model Setup}
 Logan et al.\cite{Logan2017} showed statistical agreement between experimental and simulated DRCs using GEANT4 \cite{Agostinelli03} and simulated to simulated DRCs using GEANT4 and MCNP \cite{Goorley13}.
 Thus, this work will use MCNP to simulate the experimental DRCs to evaluate the RSM performance for the designed developed.  
-% maybe also worth noting  why the switch to MCNP was made
-% Reworded.  Comment addressed?
 Instead of using just the full energy peak (FEP), the DRC is formed by adding all counts above 200keV to increase the efficiency of the determination of the source direction.  
 This value was chosen as Logan et al. noted discrepancies for counts below approximately 200keV due to scatter in the  environmental elements not considered in the model \cite{Logan2017}.
 
@@ -324,6 +322,7 @@ Other methods of coupling could be introduced if desired.
 Note that the values chosen do not need to represent physical systems (e.g. negative stiffness values are acceptable).  Thus, systems with positive, negative, and a combination of both were explored.  Two options were considered in coupling the masses with springs.  First, springs were added to couple the neighboring masses on the right and left.  
 Both wall and cyclically symmetric (the last mass is coupled to the first) boundary conditions were tested.  The second type coupled the two neighboring masses on the left and right with wall
 boundary conditions.
+For brevity, the best results are discussed.
 As an example, Fig.~\ref{fig:stiff} shows the spring-mass system with springs connecting two neighboring masses with wall boundary conditions
 that is further discussed in Section~\ref{sec:Eval}.  For brevity, the other coupling systems are not shown as the results were not optimal.
 
@@ -493,8 +492,6 @@ As it is not possible to have the fin completely cover the mask geometry, four o
 
 The eigenvector approach used 32 $k$ values from 0.1 to -0.2999 in increments of -0.0129 with stiffness coupling to the nearest two neighbors on both sides of the mass.
 $c$ was determined to be 0.999 from minimization of the design surface depicted in Fig~\ref{fig:surf}.  
-% It is not inherently obvious - to me at least - that this is beneficial or required. A brief explanation may be warranted. 
-% Which part?  c?  We know the vectors must be linearly dependent.  However, we can control how much of the other vectors we add by changing c.
 Other coupled systems did not have an optimal $c$ value close to one.
 
 The FitzGerald's RSM was used as a baseline to establish design improvement for the RSM designs shown in Figs.~\ref{fig:EVGeo} to \ref{fig:HadGeo}.  
@@ -549,9 +546,6 @@ This could result in a decrease in the off-diagonal terms corresponding to these
 Table~\ref{table:results} summarizes the evaluation results for the original RSM, binary, eigenvector (EV), and Hadamard approaches.  
 Recall that the Hadamard values correspond to those obtained without shifting vectors since the initial $\theta$ position can be deduced.
 
-% Just a comment: In contrast to Olesen's work, these results indicate that a higher degree of DRC uniqueness is obtained by using the Compton events.
-% Yes, I do have some preliminary Compton study results from this summer that it would be good to get your thoughts on as we look at neutrons.  I'll send them to you later this weekend.
-% Update: Sent...
 \begin{table}[ht]
 \caption{Evaluation criteria comparisons from the original design and the three proposed designs from this work.} % title of Table
 \centering % used for centering table
@@ -595,9 +589,6 @@ Thus, this approach reduces the source direction mis-identification possibility 
 Unfortunately there is a corresponding decrease in the average normalized counts per cell.
 On average the eigenvector mask requires 21\% more particles and, therefore, longer measurement times to produce the same statistical accuracy as the original design.
 However, due to an increase in DRC differentiation for initial positions exhibiting a high off-diagonal maximum MAC, the count number needed to correctly identify these source directions will increase by less than 21\% and may decrease. 
-% I don't know exactly how to ward this, but because of the higher differentiation between the DRCs, the 21% decreease does not correspond 1:1 with a 21% increase in measurement time to be able to identify the source.  This should be pointed out.
-% I also think we should highlight the fact that the EV approach drastically reduces the mis-identification issue with the Fitz design.
-% Changes made, Comment addressed?
 
 While these results demonstrate the binary and eigenvector methods decrease the overall and average linear dependence of the DRCs, the full design space was not explored and more optimal designs may exist.  
 Specifically, choosing an alternative last four vectors for the binary pattern may reduce the corresponding off-diagonal MAC terms.  
