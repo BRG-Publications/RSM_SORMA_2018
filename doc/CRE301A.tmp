@@ -308,6 +308,8 @@ The eigenvector approach solves a mass normalized eigenvalue problem, the binary
 
 \subsubsection{Eigenvector Approach}
 The eigenvector approach creates a basis set, which may be used to define the geometry space.  
+% The replication of the k variable is unfortunate.
+% Replication removed except in proof
 First, $n$ $k$ values are chosen, where $k$ is the spring constant.  
 These values are then placed in a stiffness matrix corresponding to the coupled spring-mass problem shown in Fig.\ref{fig:stiff}.  
 The mass is assumed to be normalized.  
@@ -324,6 +326,8 @@ Other methods of coupling could be introduced if desired.
 Note that the values chosen do not need to represent physical systems (e.g. negative stiffness values are acceptable).  Thus, systems with positive, negative, and a combination of both were explored.  Two options were considered in coupling the masses with springs.  First, springs were added to couple the neighboring masses on the right and left.  
 Both wall and cyclically symmetric (the last mass is coupled to the first) boundary conditions were tested.  The second type coupled the two neighboring masses on the left and right with wall
 boundary conditions.
+% This statement should be expounded upon to at the very least say which systems were explored.  Why were some of the other systems not included?
+% Does this satisfy your comment?  For brevity only, the best results are discussed - the other systems produced higher MAC numbers
 As an example, Fig.~\ref{fig:stiff} shows the spring-mass system with springs connecting two neighboring masses with wall boundary conditions
 that is further discussed in Section~\ref{sec:Eval}.  For brevity, the other coupling systems are not shown as the results were not optimal.
 
@@ -365,7 +369,7 @@ Using this information, the $k$ and $c$ combination with the lowest $M$ value ca
 The binary approach uses ones and zeros to represent the geometry thickness.  
 Notice that the mask's cyclic nature causes vectors such as [1 1 0 0] to be the same as [1 0 0 1] where the first vector is the second shifted by one entry to the right.  
 If the design uses binary patterns such as these two, the DRCs for two initial positions will be identical.  
-It can be shown for $n>7$ any combination of vectors with three ones placed in an arrangement that avoids cyclic behavior with themselves (such as [1 0 1 0 1 0]) or others (such as [1 1 1 0 0 0] and [0 1 1 1 0 0]) produces a theoretical $M$ value of $4/9$.  
+It can be proven for $n>7$, any combination of vectors with three ones placed in an arrangement that avoids cyclic behavior with themselves (such as [1 0 1 0 1 0]) or others (such as [1 1 1 0 0 0] and [0 1 1 1 0 0]) produces a theoretical $M$ value of $4/9$.  
 Note that including the binary "1" vector represented using 6 bits as [0 0 0 0 0 1]) does not change this $M$ value.   
 For $n=32$, there are many possible basis vectors; especially considering that the vectors can be shifted left or right (corresponding to multiplication or division by 2), and the $\phi$ vector order (1st, 2nd, 3rd, etc) may be swapped.  
 This flexibility allows one to create unique geometries, mechanically balance the mask, or improve the likelihood of obtaining a signal given a random source position by more evenly spreading the ones and zeros around the mask.
@@ -446,6 +450,8 @@ The second criteria measures the RSM's average efficiency over all initial $\the
 A high-efficiency design produces more accurate results in less measurement time, an important factor to consider for the intended applications of the RSM.  
 This is calculated as 
 
+% I do not understand the n m in the denominator.
+% Reworded to express that n and m cause epsilon to be the average efficiency over all the initial positions.
 \begin{equation}
 \epsilon=\frac{\sum_{i,j}\mathbf{DRM}_{red}}{n\ m},
 \label{eq:avgcell}
@@ -647,21 +653,24 @@ Thus, it becomes unclear if the MAC number increases or decreases as $p_u$ and/o
 First, consider $p=1$.  There is only one non-cyclically redundant vector, which can be expressed as $\left[n-1\right]$.  
 Letting $a$ and $b$ be this vector results in a maximum MAC number of $\frac{0}{1*1}=0$.
 
-Next, consider $p=2$.  Recall that a $p=2$ type vector contains two 1s, so if two 1s aligned the vectors would be identical.  
+Next, consider $p=2$.  
+Recall that a $p=2$ type vector contains two 1s, so if two 1s aligned the vectors would be identical.  
 Thus, possible non-redundant vectors include $[0\ n-p], [1\  n-p-1], [2\ n-p-2], \cdots, [\frac{n-p-1}{2}\ \frac{n-p+1}{2}]$ if $n$ is odd or a limit of $[\frac{n-p}{2}-1\ \frac{n-p}{2}+1]$ if $n$ is even.  By construction, all of the possible $p=2$ indices are unique indicating that only one 1 aligns over all possible rotations.  
 Also, there are only $\frac{n-p+1}{2}$ if $n$ is odd and $\frac{n-p}{2}$ if $n$ is even possible $p=2$ type vectors, but $n$ are desired.  
 Thus, more vectors from other $p$ types would be required to complete the $n$ basis set.    
 As a result, the maximum MAC number for any two $p=2$ vectors is $\frac{1^2}{2*2}=1/4$.
 
-Consider $p=3$, the set of all binary vectors containing three 1s.  
+Consider $p=3$, the set of all vectors containing three 1s.  
 Let the matrix $\textbf{V}$ contain terms $V_{ij}=v_i$ for the $j^{th}$ basis vector including the dependent $v_p$, where $1<i<p$ and $1<j<n$.
 For a given $n$ and $p$, the number of unique indices is less than or equal to $\lfloor \frac{n-p}{2}\rfloor+1$ since $v_i\le v_p$.  
-Any column in $\textbf{V}$ contains $n$ values.  Thus, it is not possible for one column to only contain unique indices since $n>\lfloor \frac{n-p}{2}\rfloor+1$.
-This result implies that it is impossible to from a complete basis using only $p=2$ type vectors as previously mentioned.  In addition, a $p=3$ basis must have
-duplicate indices.
+Any column in $\textbf{V}$ contains $n$ values.  Therefore, it is not possible for one column to only contain unique indices since $n>\lfloor \frac{n-p}{2}\rfloor+1$ and $r\ge 1$ for $p\ge2$.  
+Also, it is impossible to from a complete basis for $p=2$.  
+In addition, for $p=3$ the maximum MAC number is $\frac{2^2}{3*3}=4/9$, where one duplicate index results in two aligned 1s.
 
-However, it is possible to create an $n$ basis, where only one index in each $p=3$ vector is duplicated over all vector shift considerations.  
-This $p=3$ basis has a maximum MAC number equal to $\frac{2^2}{3*3}=4/9$, where one duplicate index results in two aligned 1s.
+
+
+
+However, it is possible to create an $n$ basis, where only one index in each vector is duplicated with all vector shift considerations.
 Let $q=\lfloor\frac{n-p-1}{p}\rfloor$, $r=\lfloor\frac{n-p}{2}\rfloor$, and $s$ is 0 if $n$ is odd and 1 if $n$ is even, where $\lfloor\ \rfloor$ denotes the floor function.
 Possible vectors with $v_1\le q$ form sets of decreasing size
 
