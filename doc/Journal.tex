@@ -197,9 +197,22 @@ RSM \sep geometry optimization \sep Hadamard \sep source direction
 \label{intro}
 Identifying a gamma source's direction is important in a variety of situations such as providing security, treaty compliance, and locating orphan sources.  
 % We need to add a couple sentences with a couple references about alternative approaches.  A quick detail of their performance characteristics would also be beneficial.
-% Will add on Monday
+%
+% Comment addressed or should I add more?  Feel free to modify
+Three general categories exist for gamma source direction identification; count-based systems, collimator and coded aperture systems, and Compton cameras.
+In count-based systems, a source's direction is determined by the change in the number of counts as the detector changes positions.  This method can 
+be inefficient and increase the user's exposure as they search for the source.  Collimator and coded aperture systems 
+use intervening material or a material mask to create a unique detection pattern, which can be
+used to identify the source's direction.  However, the intervening material reduces
+the detector's field-of-view (FOV) \cite{Vetter06}, which increases the time required to survey other areas.  For higher gamma energy levels the system's weight can become 
+problematic as shown by the 32,000 lb SuperMISTI system \cite{Hutcheson14} and 2700 lb Large-Area Imager \cite{Ziock06}.  These systems are mounted on mobile platforms in order to image
+the area of interest.  Compton cameras offer up to a 4$\pi$ FOV 
+\cite{Wahl11} and can distinguish between background and source radiation \cite{Vetter06, Phillips95}.  However,
+these systems require Compton events and ignore the full-energy-peak (FEP) 
+direction information.
 
-A novel alternative approach utilizes a mask placed over a position-insensitive detector \cite{FitzGerald2015}.  
+A novel, alternative approach exists which is similar to a coded aperture systems, but does not have many of its limitation.
+This system utilizes a mask placed over a single position-insensitive detector \cite{FitzGerald2015}.  
 The system records energy spectra as a function of the geometrically varying mask, which is accomplished through a constant rotation of the mask at a set rate. 
 The spectra obtained depend on the source position and can be used to identify the source direction.  
 
