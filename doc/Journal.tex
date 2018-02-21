@@ -83,7 +83,8 @@ IN PHYSICS RESEARCH}
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
 %% for the whole article with \linenumbers after \end{frontmatter}.
-%% \usepackage{lineno}
+\usepackage{lineno}
+\modulolinenumbers[5]
 
 %% natbib.sty is loaded by default. However, natbib options can be
 %% provided with \biboptions{...} command. Following options are
@@ -155,8 +156,9 @@ IN PHYSICS RESEARCH}
 %% \address[label2]{<address>}
 
 \author[d1]{Darren E. Holland}
-\author[d2]{James E. Bevins, Larry W. Burggraf, Buckley E. O'Day}
-% I assume these will be the authors...
+\author[d2]{James E. Bevins}
+\author[d2]{Larry W. Burggraf\ }
+\author[d2]{Buckley E. O'Day}
 
 \address[d1]{dholland@cedarville.edu\\
   Department of Mechanical Engineering\\
@@ -169,7 +171,7 @@ IN PHYSICS RESEARCH}
 
 \begin{abstract}
 Rotating scattering masks have shown promise as an inexpensive, lightweight method with a large field-of-view for identifying the direction of a gamma emitting source.
-However, further examination of the current rotating scattering mask design shows that the identification could be improved by changing the geometry.  
+However, further examination of the current rotating scattering mask design shows that the identification could be improved to reduce or eliminate degenerate solutions and improve required count times by changing the geometry.  
 Eigenvector, binary, and Hadamard approaches are introduced to generate alternative mask geometries.  An analysis of the resulting detector response matrix demonstrates 
 superior identification characteristics than the current design.  
 Further possible design enhancements are discussed.
@@ -189,15 +191,12 @@ RSM \sep geometry optimization \sep Hadamard \sep source direction
 %%
 %% Start line numbering here if you want
 %%
-% \linenumbers
+\linenumbers
 
 %% main text
 \section{Introduction}
 \label{intro}
-Identifying a gamma source's direction is important in a variety of situations such as providing security, treaty compliance, and locating orphan sources.  
-% We need to add a couple sentences with a couple references about alternative approaches.  A quick detail of their performance characteristics would also be beneficial.
-%
-% Comment addressed or should I add more?  Feel free to modify
+Identifying a gamma source's direction is important in a variety of applications such as providing security, treaty compliance verification, and locating orphan sources.  
 Three general categories exist for gamma source direction identification; count-based systems, collimator and coded aperture systems, and Compton cameras.
 In count-based systems, a source's direction is determined by the relative change in the count number as the detector changes positions.  This method can 
 be inefficient and increase the user's exposure as they search for the source.  Collimator and coded aperture systems 
@@ -211,21 +210,20 @@ the area of interest.  Compton cameras offer up to a 4$\pi$ FOV
 these systems require Compton events and ignore the full-energy-peak (FEP) 
 direction information.
 
-A novel, alternative approach exists, which is similar to a coded aperture system, but does not have many of its limitation.
+A novel, alternative approach, similar in concept to the coded aperture system, exists that eliminates many of the limitations of alternative approaches.
 This system utilizes a mask placed over a single position-insensitive detector \cite{FitzGerald2015}.  
 The system records energy spectra as a function of the geometrically varying mask, which is accomplished through a set, constant rotation of the mask. 
-The position dependent spectra, referred to as detector response curves (DRCs), obtained depend on the source position and can be used to identify the source direction.  FitzGerald's mask geometry results in some DRCs that are nearly identical.  This work seeks to reduce the DRCs' linear dependence 
-by optimizing the mask's geometry.
+The position dependent spectra obtained, referred to as detector response curves (DRCs), depend on the source position and can be used to identify the source direction.  FitzGerald's mask geometry results in some DRCs that are nearly identical, which can lead to mis-identification of the source direction.  
+This work seeks to reduce the DRCs' linear dependence by optimizing the mask's geometry.
 
-\section{Background}
 The rotating scatter mask (RSM) concept offers many benefits over other gamma source position identification detectors.  
 Specifically, it ``provides a nearly 4$\pi$ field-of-view, operates for a broad range of gamma energies, and has a relatively simple design \cite{Logan2017}." 
 This system uses a spherical reference system, where $\theta$ is the azimuthal and $\phi$ the polar angle.  
-The mask works by attenuating and scattering the incoming particles in order to produce unique detector response curves (DRCs) \cite{Logan2017}.  
+The mask works by attenuating and scattering the incoming particles in order to produce unique detector response curves \cite{Logan2017}.  
 To obtain the measurements for the position identification, the mask starts at an initial $\theta$ and $\phi$ position.
 It then rotates in $\theta$ around the detector with the signal recorded at each discrete $\theta$ position.  
 The measured DRC is generated by summing the counts over a desired energy range for each $\theta$ position in one complete mask rotation.  
-Comparing this curve with each possible DRC, which are known through experimentation or simulation, using a mean square error, least squares, or maximum likelihood estimate approach provides an identified initial source direction.
+Comparing this curve with each possible DRC, which are known through experimentation or simulation using a mean square error, least squares, or maximum likelihood estimate approach provides an identified initial source direction.
 
 FitzGerald introduced the RSM shown in Fig.~\ref{fig:RSM} that has a 14 inch diameter and surrounds a 3 x 3 inch cylindrical NaI scintillating detector \cite{FitzGerald2015}. 
 His original MCNP model contained 31 elements or one element every $11.6^\circ$.  
@@ -234,7 +232,7 @@ In order to increase the accuracy of the geometric representations,  the model's
 \begin{figure}[ht!]
 \includegraphics[width={3.0in}]{../figs/P2AtIso.pdf}
 \centering
-\caption{Isometric view of the unstructured mesh used to model the RSM in MCNP.}
+\caption{Isometric view of the unstructured mesh used to model the Fitzgerald RSM in MCNP.}
 \label{fig:RSM}
 \end{figure}
 
@@ -245,27 +243,20 @@ First, for any given initial source position, there is a unique response curve g
 This condition is necessary as a non-unique response would make at least two initial source position DRCs indistinguishable and a unique identification impossible.
 The second characteristic requires the mask's average thickness over a 360$^\circ$ rotation to be a constant value for all $\phi$s.  
 This criteria prevents higher or lower average responses for different $\phi$ positions. 
-This is not necessary to ensure the uniqueness of the DRC, however DRCs with widely varying average thicknesses may have a lower average count, which makes them more susceptible to measurement noise and increases the time required to obtain an accurate measured response.
+This is not necessary to ensure the uniqueness of the DRC; however, DRCs with widely varying average thicknesses may have a lower average count, which makes them more susceptible to measurement noise and increases the time required to obtain an accurate measured response.
 The final characteristic is for the solid angle from the detector centroid to be equal for all cells.  
 This constraint provides the same spatial resolution in both azimuthal and polar directions.
 Not explicitly mentioned by FitzGerald is an assumption that the geometry should be continuous, thereby allowing the DRCs to be discretized as desired.
 
-To improve upon the FitzGerald design, Hadamard transform methods were borrowed from the design of stationary encoding masks is in the fields of spectrometry and 
-imaging \cite{Sloane76, Dyer91, Finger85}. 
-What began as a one dimensional approach was extended to multi-dimensional problems \cite{Hammaker95, Hanley00, DeVerse00}, resulting in methods applicable to the RSM design optimization.
-Of particular interest is Bellamy et al.'s attempt to produce a two
-dimensional, moveable encoding mask \cite{Bellamy97}.  Unfortunately, difficulties with mask positioning reproducibility and slow translation 
-limit using moving mechanical masks in spectroscopy and imaging applications \cite{DeVerse00}.
-Similar to the RSM design, Fateley et al. \cite{Fateley02} introduced a variable mask with a single element detector for spectroscopy and imaging use.  
-Section~\ref{sec:decoupling} discusses the application of the Hadamard transform approach to the RSM design.
-% Each of which methods? The preceeding and following sentences seem a bit disjointed, but I think the goal is to say that Fateley introduced the idea of using frequency information for REM design which was based on Hadamard matrices. I didn't want to reword in case that reading was incorrect.  
-% Updated  Comments addressed?
+The remainder of this paper is organized as follows.
+Section~\ref{sec:rsm-design} provides an overview of the RSM setup, design assumptions and limitations, design criteria, and the design methodologies used to generate improved RSM designs. 
+Section~\ref{sec:results} describes the performance of each of the alternative designs and compares that performance to the Fitzgerald baseline.  
+Finally, Section~\ref{sec:conclusions} discusses possible future improvements on the methodologies presented here and key results from the improved RSM designs. 
 
-\section{RSM Design}
-\subsection{Basic Model Setup}
+\section{RSM Design} \label{sec:rsm-design}
 Logan et al.\cite{Logan2017} showed statistical agreement between experimental and simulated DRCs using GEANT4 \cite{Agostinelli03} and simulated to simulated DRCs using GEANT4 and MCNP \cite{Goorley13}.
 Thus, this work will use MCNP to simulate the experimental DRCs needed for evaluating each RSM design's performance.  
-Instead of using only the full energy peak (FEP), the DRC is formed by adding all counts above 200keV to increase the source direction identification's efficiency.  
+Instead of using only the full energy peak (FEP), the DRC for this work is formed by summing all counts above 200keV to increase the source direction identification's efficiency.  
 The 200keV limit was chosen as Logan et al. noted discrepancies for counts below this value due to scatter in the environmental elements not considered in the model \cite{Logan2017}.
 
 Originally, both the analysis of FitzGerald's RSM and the new designs were to be discretized into 10$^\circ$ increments in $\theta$ and 5$^\circ$ in $\phi$.  
@@ -276,7 +267,7 @@ The RSM design is to be optimized for a $^{137}$Cs point source located 36 inche
 To simulate the relative source rotation in MCNP, the mask is stationary, while the source is rotated in spherical coordinates every degree for $\theta$ from 0 to $348.75^\circ$ and for each $\phi$ from 5.625$^\circ$ to $168.75^\circ$.  
 The modeled NaI detector includes a 1/8 inch 2024 Aluminum alloy sleeve on which the acrylic RSM is placed. 
 The maximum width of the RSM depends on the methodology, but the maximum mask thickness is a constant 7.87 inches (20 cm).  
-A sphere of air surrounds the source and detector.  
+A sphere of air surrounds the source and detector, and all other environmental factors were ignored.  
 To increase the solution convergence rate, particles were emitted within a $27.26^\circ$ half angle cone extending from the source to the detector's center.  
 This variance reduction technique assumes that the effect of the few particles that 
 scatter in the air outside of the cone, though the mask, and into the detector will have negligible contributions to the simulated DRCs.   
@@ -288,7 +279,7 @@ It is assumed that the detector-mask-source geometry is related to the DRC and t
 Qualitative studies of this correlation showed that, in general, this assumption is valid with two qualifications.  
 First, a discontinuous geometry results in a continuous DRC due to correlations with neighboring rotations. 
 Second, while the RSM may offer an increase in the total counts, it comes with a limit on the spacial resolution. 
-To understand this statement in detail, define a cell to be a rectangular prism with a given thickness extending from the centroid of the detector (outside of the aluminum sleeve) in a given direction.
+To understand this statement in detail, consider a rectangular prism cell with a given thickness extending from the centroid of the detector (outside of the aluminum sleeve) in a given direction.
 Since the cells do not have impenetrable walls, particles from one source position enter cells pointed at other positions.  
 In fact, this phenomena is one of the desirable characteristics of FitzGerald's design as an increase in scattered particles can increase the total number of counts seen by the detector thereby increasing the efficiency.  
 However, if the cells are too small relative to the source's distance, then neighboring cells may see a response comparable to the cell located between the detector and source.
@@ -297,7 +288,7 @@ To best enable source direction identification, a unique set of DRCs must be obt
 The complete set of DRCs for all rotations angles forms the design response matrix (DRM).
 The primary criterion for the design choice will be the design with the most unique DRM.  
 To achieve this goal, the requirements for maintaining a constant spatial resolution in both spherical directions and requiring a continuous geometry are relaxed.  
-However, to obtain a more constant response level a constant average thickness for each $\phi$ angle is maintained.  
+However, to obtain a more constant response level, a constant average thickness for each $\phi$ angle is maintained.  
 
 For this application, it is desirable that the curve generated at each initial source position be orthogonal - a.k.a. unique - to the others.  
 Let this curve be denoted $\mathbf{DRC}_{i,j},$ where $i=0,1,...,n$ is the initial $\theta$ and $j=0,1,...,m$ is the initial $\phi$ index relative to a reference location on the mask.  
@@ -321,7 +312,7 @@ MAC_{g,h,i,j}=\frac{\left(\mathbf{u}_{g,h}^T\mathbf{v}_{i,j}\right)^2}{\left(\ma
 \noindent where $\mathbf{u}_{g,h}$ and $\mathbf{v}_{i,j}$ are the DRCs for the respective initial positions $\left(\theta=g\Delta\theta,\phi=h\Delta\phi\right)$ and
 $\left(\theta=i\Delta\theta,\phi=j\Delta\phi\right)$.
 
-Considering the vector shifts, the maximum MAC number, which corresponds to the most similar pair of DRCs is given in Eqns.~\ref{eq:maxmac}.
+Considering all of the vector shifts, the maximum MAC number, which corresponds to the most similar pair of DRCs is given in Eqns.~\ref{eq:maxmac}.
 
 \begin{equation}
 M=max_{g,h,i,j}\left(MAC_{g,h,i,j}\right),
@@ -354,10 +345,11 @@ For this condition to be true, $n\leq n-m\rightarrow m\leq 0$, which is impossib
 As a result, it is impossible to create linearly independent DRCs.  
 So, the optimized design objective is to create a design with the least amount of linear dependence.  
 The three following methods are tailored to create designs for identifying both $\theta$ and $\phi$ with a low linear dependence.  
-The eigenvector approach solves a mass normalized eigenvalue problem.  The binary method uses patterns of ones and zeros to represent the geometry.
-Lastly, the Hadamard approach used for rotating encoding masks is modified and applied.
+The eigenvector approach shown in Section~\ref{sec:eigen} solves a mass normalized eigenvalue problem.  
+The binary method described in Section~\ref{sec:binary} uses patterns of ones and zeros to represent the geometry.
+Lastly, Section~\ref{sec:decoupling} discusses the modification and application of the Hadamard approach used for rotating encoding masks.
 
-\subsubsection{Eigenvector Approach}
+\subsubsection{Eigenvector Approach} \label{sec:eigen}
 The eigenvector approach creates a basis set, which may be used to define the geometry space.  
 First, $n$ $k$ values are chosen, where $k$ is the spring constant.  
 These values are then placed in a stiffness matrix corresponding to the coupled spring-mass problem shown in Fig.\ref{fig:stiff}.  
@@ -376,9 +368,9 @@ Note that the values chosen do not need to represent physical systems (e.g. nega
 Both wall and cyclically symmetric (the last mass is coupled to the first) boundary conditions were tested.  The second type coupled the two neighboring masses on the left and right, while
 applying wall boundary conditions.
 As an example, Fig.~\ref{fig:stiff} shows the spring-mass system with springs connecting two neighboring masses and wall boundary conditions
-that is further discussed in Section~\ref{sec:Eval}.  For brevity, the other coupling systems are not shown as the results were not optimal.
+that is further discussed in Section~\ref{sec:Eval}.  For brevity, the other coupling systems are not shown as the results were found to be not optimal.
 
-Then, an eigenvalue problem is solved resulting in $n$ orthonormal eigenvectors used to represent the geometry for initial position $\theta=0$ and all initial $phi$ positions.  
+Once the system is constructed, an eigenvalue problem is solved resulting in $n$ orthonormal eigenvectors used to represent the geometry for initial position $\theta=0$ and all initial $\phi$ positions.  
 As the first vector tends to be planar motion (a cyclical vector) it is not chosen.  
 This elimination results in a matrix formed by eigenvectors $2...m+1$.  
 However, observations led to the conclusion that the orthogonal linear independence for $\theta=0$ caused some high $M$ values when considering all initial $\theta$ positions.  
@@ -402,7 +394,7 @@ Lastly, each eigenvector is normalized by the maximum vector value and scaled.
 These steps produce a minimal thickness of approximately 0.1 cm and a maximum mask thickness of 20 cm.
 
 Multiple geometries for various $k$ and $c$ combinations can be tested resulting in the design surface shown in Fig.~\ref{fig:surf}.  
-These results are is based solely on the geometry vectors and not $\mathbf{DRM}_{red}$.  
+These results are based solely on the geometry vectors and not $\mathbf{DRM}_{red}$.  
 Using this information, the $k$ and $c$ combination with the lowest $M$ value can be chosen for the more time expensive MCNP simulations.
 
 \begin{figure}[ht!]
@@ -412,7 +404,7 @@ Using this information, the $k$ and $c$ combination with the lowest $M$ value ca
 \label{fig:surf}
 \end{figure}
 
-\subsubsection{Binary Approach}
+\subsubsection{Binary Approach} \label{sec:binary}
 The binary approach uses ones and zeros to represent the geometry thickness.  
 Notice that the mask's cyclic nature causes vectors such as [1 1 0 0] to be the same as [1 0 0 1], where the first vector is the second shifted by one entry to the right.  
 If the design uses binary patterns such as these two, the DRCs for two initial positions will be identical.  
@@ -433,8 +425,13 @@ As the initial $\theta$ position is known, the reference DRM angle may be change
 This knowledge decouples the $\theta$ and $\phi$ identification, resulting in only needing to compare the measured DRC to the $m$ $\phi$ curves in $\mathbf{DRM}_{red}$.  
 Using this method, it is possible to create $m$ linearly independent geometric basis vectors.
 
-One such linearly independent basis is the Hadamard matrix.
-While this matrix has been used in spectroscopy for many years, Hadamard encoding masks assume that some of cells are ``on", ``off" or detected by a second sensor \cite{DeVerse00}.  
+One such linearly independent basis is the Hadamard matrix, which has been used in the design of stationary encoding masks in the fields of spectrometry and imaging \cite{Sloane76, Dyer91, Finger85}. 
+What began as a one dimensional approach was extended to multi-dimensional problems \cite{Hammaker95, Hanley00, DeVerse00}, resulting in methods applicable to the RSM design optimization.
+Of particular interest is Bellamy et al.'s attempt to produce a two dimensional, moveable encoding mask \cite{Bellamy97}.  Unfortunately, difficulties with mask positioning reproducibility and slow translation 
+limit using moving mechanical masks in spectroscopy and imaging applications \cite{DeVerse00}.
+Similar to the RSM design, Fateley et al. \cite{Fateley02} introduced a variable mask with a single element detector for spectroscopy and imaging use.  
+
+While this matrix has been used in spectroscopy for many years, Hadamard encoding masks assume that some of cells are ``on", ``off", or detected by a second sensor \cite{DeVerse00}.  
 In addition, it is assumed that one knows the on/off state of the cells.  
 The equivalent RSM design goal is to identify this on/off state and thus, it corresponds to an inverse problem.  
 In contrast to the encoding masks, each cell in the RSM design is not in a fully on/off state, but may have particles passing through it even when the source is not directly aligned.
@@ -449,19 +446,18 @@ A normalized geometry resulted by following the same steps as outlined in the ei
 \subsection{Design Evaluation}
 \label{sec:Eval}
 To assess the design optimality, four criteria relevant to the performance of the RSM are proposed.  The first, the maximum MAC value, was discussed in Section~\ref{sec:MAC}.  
-The average MAC number, $A$, is given in Eqn.~\ref{eq:avgmac} and provides information about the mean linear dependence level.
+The average MAC number, $A$, is given in Eqn.~\ref{eq:avgmac} and provides information about the mean linear dependence.
 \begin{equation}
 A=\frac{1}{b}\sum_{g,h,i,j}\left(MAC_{g,h,i,j}\right),
 \label{eq:avgmac}
 \end{equation}
 
-where $g\neq i$, $h\neq j$, and $b$ is the total number of combinations given by $b=\left(\overset{m}{_2}\right)+(n-1)\left(\overset{m+1}{_2}\right)$.  
+\noindent where $g\neq i$, $h\neq j$, and $b$ is the total number of combinations given by $b=\left(\overset{m}{_2}\right)+(n-1)\left(\overset{m+1}{_2}\right)$.  
 Note that $\left(\overset{m}{_2}\right)$ is the total number of combinations without $\theta$ shifts (aka $\theta=0$), $n-1$ is the total number of $\theta$ shifts possible, and $\left(\overset{m+1}{_2}\right)$ is the number of combinations for DRCs shifted one $\theta$ position.  
 For the $n=32$ and $m=30$ mask design, $b=14850$.  The optimal design should have low $M$ and $A$ values.
 
-Note that the average, minimum, and maximum DRC values for a given $\phi$ remain the same for different initial $\theta$ values.  
+The average, minimum, and maximum DRC values for a given $\phi$ remain the same for different initial $\theta$ values.  
 Thus, no $\theta$ shifting needs to be considered in the following two criteria.  The third criteria measures the RSM's average efficiency for a mask cell. 
-% I was wrong about this criteria.  It's not the averge normalized counts over theta and phi positions.  It is the average normalized counts for a given cell (# of cells = n * m)
 A high-efficiency design produces more accurate results in less measurement time, an important factor to consider for the intended applications of the RSM.  
 This value is calculated as 
 
@@ -473,7 +469,7 @@ This value is calculated as
 \noindent where $n\ m$ is the total number of mask cells.
 Note, this is not the absolute detection efficiency as the spectra obtained remove the $<$ 200~keV counts.
 
-The final evaluation criterion focuses on the design's sensitivity (ability to create large variations in DRCs).  
+The final evaluation criterion focuses on the design's sensitivity.  
 The ratio of the maximum to minimum response in Eqn.~\ref{eq:sens} provides information on the relative amount of measurement time required and the measurement's sensitivity to random measurement noise. 
 
 \begin{equation}
@@ -483,7 +479,7 @@ S=min_{j}\left(\frac{max_{i} \left[\mathbf{DRM}_{red}\right]}{min_{i} \left[\mat
 
 The following section applies the four evaluation criteria to DRC simulations for all possible discrete source positions for the designs generated from the three approaches outlined in Sec.~\ref{design-methods}.
 
-\section{Results and Analysis}
+\section{Results and Analysis} \label{sec:results}
 The proposed design methodologies produced the geometries shown in Figs.~\ref{fig:EVGeo} to \ref{fig:HadGeo}.
 
 \begin{figure}[ht!]
@@ -531,7 +527,7 @@ Figure~\ref{fig:RSMMAC} shows a visual MAC number representation for $\theta=0$ 
 It is worth pointing out a couple of key features for these MAC plots. 
 First, the diagonal entries correspond to comparing a vector to itself, and thus will always be equal to one.
 Second, the plots are symmetric about the diagonal.  
-Finally, the large off-diagonal regions are of particular interest because these high values could result in the mis-identification of the initial source direction. 
+Finally, the large off-diagonal regions are of particular interest because these high values could result in the mis-identification of the source direction. 
 The new proposed designs significantly lower off-diagonal values resulting in less degeneracy in the source direction as shown in Figs.~\ref{fig:EMAC} to \ref{fig:HadMAC}.
 
 \begin{figure}[ht!]
@@ -585,7 +581,7 @@ S & 1.00 & 1.07 & 1.16 & 1.07 \\
 \label{table:results} % is used to refer this table in the text
 \end{table}
 
-Notice that the original design has an overall MAC number of 1.00. 
+Notice that the original design has a maximum MAC number of 1.00. 
 This value corresponds to a part of the geometry that has a constant thickness as $\theta$ varies.  
 As a result, a shift in the initial $\theta$ produces the same DRC and a MAC number of 1.  
 For the same reason, the sensitivity value is 1.00.  
@@ -599,7 +595,8 @@ However, the trade-off is that the eigenvector method produced a RSM with a lowe
 The binary method has the most average normalized number of counts per cell, but also the highest sensitivity.  
 This high sensitivity may indicate that certain initial positions are more susceptible to measurement noise.
 
-\section{Conclusions}
+
+\section{Conclusions} \label{sec:conclusions}
 Rotating scattering masks (RSMs) have shown promise for a gamma source direction identification, 
 but previous results indicate that the original RSM design has degenerate detector response curves.  
 This degeneracy may result in an incorrect source position identification, especially when considering noise, finite count times, and statistical confidence intervals.
@@ -612,10 +609,9 @@ On average the eigenvector mask requires 21\% more particles and, therefore, lon
 However, due to an increase in DRC differentiation for initial positions exhibiting a high off-diagonal maximum MAC, the count number needed to correctly identify these source directions will increase by less than 21\% and may decrease. 
 
 While these results demonstrate the binary and eigenvector methods decrease the overall and average linear dependence of the DRCs, the full design space was not explored and more optimal designs may exist.  
-Specifically, choosing an alternative last four vectors for the binary pattern may reduce the corresponding off-diagonal MAC terms.  
-As a result, $A$ should decrease.  
-In addition, rotating or swapping the binary vectors would allow for a better mechanical balance.  
-The eigenvector approach has a large design space especially when other coupled systems are considered.  
+Specifically, choosing an alternative last four vectors for the binary pattern may reduce the corresponding off-diagonal MAC terms, and, as a result, $A$ should decrease.  
+Additionally, rotating or swapping the binary vectors would allow for a better mechanical balance.  
+Finally, the eigenvector approach has a large design space especially when other coupled systems are considered.  
 Further exploration of this space and its refinement may produce a geometry with lower $M$ and $A$ values.
 
 \section{Acknowledgment}
@@ -624,7 +620,7 @@ The authors would to thank Dr. Ashley Holland and Dr. Adam Cahill for their assi
 
 \appendix
 
-% I have not fully reviewed the proof, but it is unclear that it is needed for the paper.  However, it is worth a discussion.
+% This is not referenced at all in the paper.
 \section{Binary Approach Proof}
 The objective of the following work is to choose $n$ binary numbers such that the MAC number denoted as 
 
@@ -632,7 +628,7 @@ The objective of the following work is to choose $n$ binary numbers such that th
 MAC_{a,b}=\frac{\left(\mathbf{a}\cdot\mathbf{b}\right)^2}{\left(\mathbf{a}\cdot\mathbf{a}\right)\left(\mathbf{b}\cdot\mathbf{b}\right)}
 \end{equation}
 
-is minimized for every combination of numbers $\textbf{a}$ and $\textbf{b}$ including their the corresponding cyclically shifted versions.
+\noindent is minimized for every combination of numbers $\textbf{a}$ and $\textbf{b}$ including their the corresponding cyclically shifted versions.
 
 Consider an $n$ bit binary number greater than zero with $p$ ones and $n-p$ zeros, where $0<p<n$.  
 Further, shift this number by a number of bits so that the left-most bit contains a one.  
@@ -645,7 +641,7 @@ In general, we can write any non-zero binary number as the vector $\textbf{v}=\l
 
 Now, cyclic redundancy can be avoided by ignoring any $\textbf{v}$ that become duplicated under shifts.  
 For example, [0 3 2] and [3 2 0] represented the same binary number, where the second vector is the first shifted to the left by $v_1+2$ bits.  
-To avoid this behavior, we require $v_{1}<v_p$, but $v_2\le v_p, v_3\le v_p, \cdots, v_{p-1}\le v_p$.  
+To avoid this behavior, we require $v_{1}<v_p$ and $v_2\le v_p, v_3\le v_p, \cdots, v_{p-1}\le v_p$.  
 Note that by construction two vectors with a different number of ones cannot be cyclically identical.
 
 Consider two vectors, $\textbf{u}=\left[u_1\ u_2\ u_3\ \cdots\ u_{p_u}\right]$ and $\textbf{v}=\left[v_1\ v_2\ v_3\ \cdots\ v_{p_v}\right]$ containing $p_u$ and $p_v$ ones respectively.  
@@ -694,13 +690,13 @@ In general, the $i^{th}$ set ($i=0\ ...\ q$) can be expressed as
 \{[i,\ 0,\ n-p-i], [i,\ 1,\ n-p-i-1], \cdots [i,\ r-\lfloor \frac{i+1}{2}\rfloor+s\ mod(i,2),\ r-\lfloor \frac{i}{2}\rfloor+s\ mod(i+1,2)]\},
 \end{equation}
 
-where the total number of terms, $t_1$, is
+\noindent where the total number of terms, $t_1$, is
 
 \begin{equation}
 t_1=\sum_{i=0}^{q} \lfloor\frac{n-p}{2}\rfloor-\lfloor\frac{i+1}{2}\rfloor+s\ mod(i,2)+1.
 \end{equation}
 
-Since $v_1<v_3$, sets with $v_1>q$, can be expressed using the following approach,
+\noindent Since $v_1<v_3$, sets with $v_1>q$, can be expressed using the following approach,
 
 \begin{center}
 $\{[q+1,\ 0,\ n-p-q-1]; [q+1,\ 1,\ n-p-q-2]; \cdots [q+1,\ n-p-2q-3,\ q+2]\}$,\\
@@ -714,19 +710,19 @@ $\{[\lfloor\frac{n-p-1}{2}\rfloor,\ 0,\ r+1]\}$ if $n$ is even.\\
 $\{[\lfloor\frac{n-p-1}{2}\rfloor,\ 0,\ r+1]; [\lfloor\frac{n-p-1}{2}\rfloor,\ 1,\ r]\}$ if $n$ is odd.
 \end{center} 
 
-In general, the $i^{th}$ set ($i=q+1\ ...\ \lfloor\frac{n-p-1}{2}\rfloor$) can be expressed as 
+\noindent In general, the $i^{th}$ set ($i=q+1\ ...\ \lfloor\frac{n-p-1}{2}\rfloor$) can be expressed as 
 
 \begin{equation}
 \{[i,\ 0,\ n-p-i-0], [i,\ 1,\ n-p-i-1], \cdots [i,\ n-p-2i-1,\ i+1]\},
 \end{equation}
 
-where the total number of terms, $t_2$, is
+\noindent where the total number of terms, $t_2$, is
 
 \begin{equation}
 t_2=\sum_{i=q+1}^{\lfloor\frac{n-p-1}{2}\rfloor} n-p-2i-1+1 =\sum_{i=q+1}^{\lfloor\frac{n-p-1}{2}\rfloor} n-p-2i
 \end{equation}
 
-Thus, the total number of terms for $p=3$ and a given $n$ is $t=t_1+t_2$.  
+\noindent Thus, the total number of terms for $p=3$ and a given $n$ is $t=t_1+t_2$.  
 
 Recall that $p=1$ only has a single ``1" which will align with any $p=3$ vector for three shifted positions.  
 As a result, the $p=1$ vector can be combined with the $p=3$ vectors, since the maximum MAC number between a $p=1$ and $p=3$ vector is $\frac{1^2}{1*3}=\frac{1}{3} < \frac{4}{9}$.  
