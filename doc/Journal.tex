@@ -165,16 +165,17 @@ IN PHYSICS RESEARCH}
 	Cedarville University \\
 	Cedarville, OH\\}
 	
-\address[d2,d3,d4]{Department of Engineering Physics\\
+\address[d2]{Department of Engineering Physics\\
 	Air Force Institute of Technology \\
 	Wright-Patterson AFB, OH\\}
 
 \begin{abstract}
-Rotating scattering masks have shown promise as a cheap, lightweight method for identifying the direction of a gamma emitting source.
+Rotating scattering masks have shown promise as an inexpensive, lightweight method with a large field-of-view for identifying the direction of a gamma emitting source.
 However, further examination of the current rotating scattering mask design shows that the identification could be improved by changing the geometry.  
-Three methods are introduced to generate the mask geometry accompanied by the resulting detector response matrix analysis.  
-The results demonstrate superior identification characteristics than the current design.  
+Eigenvector, binary, and Hadamard approaches are introduced to generate alternative mask geometries.  An analysis of the resulting detector response matrix demonstrates 
+superior identification characteristics than the current design.  
 Further possible design enhancements are discussed.
+% More detail/specifics to be added
 \end{abstract}
 
 \begin{keyword}
@@ -200,25 +201,27 @@ Identifying a gamma source's direction is important in a variety of situations s
 %
 % Comment addressed or should I add more?  Feel free to modify
 Three general categories exist for gamma source direction identification; count-based systems, collimator and coded aperture systems, and Compton cameras.
-In count-based systems, a source's direction is determined by the change in the number of counts as the detector changes positions.  This method can 
+In count-based systems, a source's direction is determined by the relative change in the count number as the detector changes positions.  This method can 
 be inefficient and increase the user's exposure as they search for the source.  Collimator and coded aperture systems 
-use intervening material or a material mask to create a unique detection pattern, which can be
+use intervening material or a mask to create a unique detection pattern, which can be
 used to identify the source's direction.  However, the intervening material reduces
-the detector's field-of-view (FOV) \cite{Vetter06}, which increases the time required to survey other areas.  For higher gamma energy levels the system's weight can become 
-problematic as shown by the 32,000 lb SuperMISTI system \cite{Hutcheson14} and 2700 lb Large-Area Imager \cite{Ziock06}.  These systems are mounted on mobile platforms in order to image
+the detector's field-of-view (FOV) \cite{Vetter06}, which increases the time required to survey surrounding areas.  For higher gamma energy levels, the system's weight 
+and portability can become problematic as shown by the 32,000 lb SuperMISTI system \cite{Hutcheson14} and 2700 lb Large-Area Imager \cite{Ziock06}.  
+These systems are mounted on mobile platforms in order to image
 the area of interest.  Compton cameras offer up to a 4$\pi$ FOV 
 \cite{Wahl11} and can distinguish between background and source radiation \cite{Vetter06, Phillips95}.  However,
 these systems require Compton events and ignore the full-energy-peak (FEP) 
 direction information.
 
-A novel, alternative approach exists which is similar to a coded aperture systems, but does not have many of its limitation.
+A novel, alternative approach exists, which is similar to a coded aperture system, but does not have many of its limitation.
 This system utilizes a mask placed over a single position-insensitive detector \cite{FitzGerald2015}.  
-The system records energy spectra as a function of the geometrically varying mask, which is accomplished through a constant rotation of the mask at a set rate. 
-The spectra obtained depend on the source position and can be used to identify the source direction.  
+The system records energy spectra as a function of the geometrically varying mask, which is accomplished through a set, constant rotation of the mask. 
+The position dependent spectra, referred to as detector response curves (DRCs), obtained depend on the source position and can be used to identify the source direction.  FitzGerald's mask geometry results in some DRCs that are nearly identical.  This work seeks to reduce the DRCs' linear dependence 
+by optimizing the mask's geometry.
 
 \section{Background}
 The rotating scatter mask (RSM) concept offers many benefits over other gamma source position identification detectors.  
-Specifically, it "provides a nearly 4$\pi$ field-of-view, operates for a broad range of gamma energies, and has a relatively simple design \cite{Logan2017}." 
+Specifically, it ``provides a nearly 4$\pi$ field-of-view, operates for a broad range of gamma energies, and has a relatively simple design \cite{Logan2017}." 
 This system uses a spherical reference system, where $\theta$ is the azimuthal and $\phi$ the polar angle.  
 The mask works by attenuating and scattering the incoming particles in order to produce unique detector response curves (DRCs) \cite{Logan2017}.  
 To obtain the measurements for the position identification, the mask starts at an initial $\theta$ and $\phi$ position.
@@ -228,7 +231,7 @@ Comparing this curve with each possible DRC, which are known through experimenta
 
 FitzGerald introduced the RSM shown in Fig.~\ref{fig:RSM} that has a 14 inch diameter and surrounds a 3 x 3 inch cylindrical NaI scintillating detector \cite{FitzGerald2015}. 
 His original MCNP model contained 31 elements or one element every $11.6^\circ$.  
-In order to increase the accuracy of the geometric representations,  the angular resolution of the model was later increased to every degree.  
+In order to increase the accuracy of the geometric representations,  the model's angular resolution was later increased to every degree.  
 
 \begin{figure}[ht!]
 \includegraphics[width={3.0in}]{../figs/P2AtIso.pdf}
@@ -241,7 +244,7 @@ FitzGerald's design methodology assumes that the detector response is related to
 Without this assumption, intentional mask design degenerates into random trial and error.
 In addition, he proposed three desirable characteristics for the RSM system.  
 First, for any given initial source position, there is a unique response curve generated as the mask rotates 360$^\circ$.  
-This condition is necessary as a non-unique response would make at least two initial source position DRCs indistinguishable and unique identification impossible.
+This condition is necessary as a non-unique response would make at least two initial source position DRCs indistinguishable and a unique identification impossible.
 The second characteristic requires the mask's average thickness over a 360$^\circ$ rotation to be a constant value for all $\phi$s.  
 This criteria prevents higher or lower average responses for different $\phi$ positions. 
 This is not necessary to ensure the uniqueness of the DRC, however DRCs with widely varying average thicknesses may have a lower average count, which makes them more susceptible to measurement noise and increases the time required to obtain an accurate measured response.
@@ -251,10 +254,10 @@ Not explicitly mentioned by FitzGerald is an assumption that the geometry should
 
 To improve upon the FitzGerald design, Hadamard transform methods were borrowed from the design of stationary encoding masks is in the fields of spectrometry and 
 imaging \cite{Sloane76, Dyer91, Finger85}. 
-What began as a one dimensional approach was extended to multi-dimensional problems \cite{Hammaker95, Hanley00, DeVerse00}, resulting in methods which can be applied to the RSM design.
+What began as a one dimensional approach was extended to multi-dimensional problems \cite{Hammaker95, Hanley00, DeVerse00}, resulting in methods applicable to the RSM design optimization.
 Of particular interest is Bellamy et al.'s attempt to produce a two
-dimensional, moveable encoding mask \cite{Bellamy97}.  Unfortunately, it was found that difficulties with mask positioning reproducibility and slow translation 
-limited using moving mechanical masks in spectroscopy and imaging applications \cite{DeVerse00}.
+dimensional, moveable encoding mask \cite{Bellamy97}.  Unfortunately, difficulties with mask positioning reproducibility and slow translation 
+limit using moving mechanical masks in spectroscopy and imaging applications \cite{DeVerse00}.
 Similar to the RSM design, Fateley et al. introduced a variable mask with a single element detector \cite{Fateley02} for spectroscopy and imaging use.  
 Section \ref{sec:decoupling} discusses the application of the Hadamard transform approach to the RSM design.
 % Each of which methods? The preceeding and following sentences seem a bit disjointed, but I think the goal is to say that Fateley introduced the idea of using frequency information for REM design which was based on Hadamard matrices. I didn't want to reword in case that reading was incorrect.  
