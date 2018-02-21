@@ -170,12 +170,19 @@ IN PHYSICS RESEARCH}
 	Wright-Patterson AFB, OH\\}
 
 \begin{abstract}
-Rotating scattering masks have shown promise as an inexpensive, lightweight method with a large field-of-view for identifying the direction of a gamma emitting source.
-However, further examination of the current rotating scattering mask design shows that the identification could be improved to reduce or eliminate degenerate solutions and improve required count times by changing the geometry.  
-Eigenvector, binary, and Hadamard approaches are introduced to generate alternative mask geometries.  An analysis of the resulting detector response matrix demonstrates 
-superior identification characteristics than the current design.  
+Rotating scattering masks have shown promise as an inexpensive, lightweight method with a large field-of-view for identifying the direction of a gamma emitting source
+or sources.  However, further examination of the current rotating scattering mask design shows that the identification could be improved to reduce or eliminate degenerate solutions and improve required count times by changing the geometry.  
+These changes should produce more linearly independent characteristics for the mask, resulting in a decrease in the mis-identification probability.  
+Three approaches are introduced to generate alternative mask geometries.
+The eigenvector method uses a spring-mass system to create a geometry basis.  The binary approach uses ones and zeros to represent the geometry with many possible
+combinations allowing for additional design flexibility.  
+Finally, a Hadamard matrix is modified to examine a decoupled geometric solution.   
+Four criteria are proposed for evaluating these methodologies.
+An analysis of the resulting detector response matrices demonstrates that these methodologies produced 
+superior identification characteristics than the original design.  The eigenvector approach produces the least linearly dependent results, but exhibits a decrease
+in average efficiency.  The binary results are more linearly dependent than the eigenvector approach, but this design achieves a higher average efficiency than than original.  
+The Hadamard-based method produced a lower maximum, but a higher average linear dependence than the original design.
 Further possible design enhancements are discussed.
-% More detail/specifics to be added
 \end{abstract}
 
 \begin{keyword}
@@ -312,7 +319,7 @@ MAC_{g,h,i,j}=\frac{\left(\mathbf{u}_{g,h}^T\mathbf{v}_{i,j}\right)^2}{\left(\ma
 \noindent where $\mathbf{u}_{g,h}$ and $\mathbf{v}_{i,j}$ are the DRCs for the respective initial positions $\left(\theta=g\Delta\theta,\phi=h\Delta\phi\right)$ and
 $\left(\theta=i\Delta\theta,\phi=j\Delta\phi\right)$.
 
-Considering all of the vector shifts, the maximum MAC number, which corresponds to the most similar pair of DRCs is given in Eqns.~\ref{eq:maxmac}.
+Considering all vector shifts, the maximum MAC number, which corresponds to the most similar pair of DRCs is given in Eqns.~\ref{eq:maxmac}.
 
 \begin{equation}
 M=max_{g,h,i,j}\left(MAC_{g,h,i,j}\right),
@@ -408,7 +415,7 @@ Using this information, the $k$ and $c$ combination with the lowest $M$ value ca
 The binary approach uses ones and zeros to represent the geometry thickness.  
 Notice that the mask's cyclic nature causes vectors such as [1 1 0 0] to be the same as [1 0 0 1], where the first vector is the second shifted by one entry to the right.  
 If the design uses binary patterns such as these two, the DRCs for two initial positions will be identical.  
-It can be shown for $n>7$ any combination of vectors with three ones placed in an arrangement that avoids cyclic behavior with themselves (such as [1 0 1 0 1 0]) or others (such as [1 1 1 0 0 0] and [0 1 1 1 0 0]) produces a theoretical $M$ value of $4/9$.  
+As shown in \ref{sec:proof}, for $n>7$ any combination of vectors with three ones placed in an arrangement that avoids cyclic behavior with themselves (such as [1 0 1 0 1 0]) or others (such as [1 1 1 0 0 0] and [0 1 1 1 0 0]) produces a theoretical $M$ value of $4/9$.  
 Note that including the binary ``1" vector represented using 6 bits as [0 0 0 0 0 1]) does not change this $M$ value.   
 For $n=32$, there are many possible basis vectors; especially considering that the vectors can be shifted left or right (corresponding to multiplication or division by 2), and the $\phi$ vector order (1st, 2nd, 3rd, etc) may be swapped.  
 This flexibility allows one to create unique geometries, mechanically balance the mask, or improve the likelihood of obtaining a signal given a random source position by more evenly spreading the ones and zeros around the mask.
@@ -512,7 +519,6 @@ As it is not possible to have the fin completely cover the mask geometry, four o
 
 The FitzGerald's RSM was used as a baseline to establish the design improvement for the RSM designs shown in Figs.~\ref{fig:EVGeo} to \ref{fig:HadGeo}.  
 The simulation of FitzGerald's design involved a mask discretization of 10$^\circ$ in $\theta$ and $\phi$; corresponding to $n=36$.  However, the Hadamard $n=36$ matrix cannot be created by lower order Hadamard matrices \cite{Weisstein}, thus the proposed designs use $n=32$. 
-% Reworded
 This change in discretization will only have a minor impact to the evaluation criteria as the discretizations are sufficiently coarse to avoid the spatial resolution limit for a single point source.
 
 Figure~\ref{fig:RSMMAC} shows a visual MAC number representation for $\theta=0$ obtained by using Eqn.~\ref{eq:mac}. 
@@ -621,7 +627,8 @@ The authors would to thank Dr. Ashley Holland and Dr. Adam Cahill for their assi
 \appendix
 
 % This is not referenced at all in the paper.
-\section{Binary Approach Proof}
+% Added to binary approach section
+\section{Binary Approach Proof} \label{sec:proof}
 The objective of the following work is to choose $n$ binary numbers such that the MAC number denoted as 
 
 \begin{equation}
