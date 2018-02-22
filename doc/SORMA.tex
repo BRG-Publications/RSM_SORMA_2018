@@ -1,52 +1,6 @@
-
-% Template for Elsevier CRC journal article
-% version 1.1 dated 16 March 2010
-
-% This file (c) 2010 Elsevier Ltd.  Modifications may be freely made,
-% provided the edited file is saved under a different name
-
-% This file contains modifications for Procedia Computer Science
-% but may easily be adapted to other journals
-
-% Changes since version 1.0
-% - elsarticle class option changed from 1p to 3p (to better reflect CRC layout)
-
-%-----------------------------------------------------------------------------------
-
-%% This template uses the elsarticle.cls document class and the extension package ecrc.sty
-%% For full documentation on usage of elsarticle.cls, consult the documentation "elsdoc.pdf"
-%% Further resources available at http://www.elsevier.com/latex
-
-%-----------------------------------------------------------------------------------
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                                          %%
-%% Important note on usage                  %%
-%% -----------------------                  %%
-%% This file must be compiled with PDFLaTeX %%
-%% Using standard LaTeX will not work!      %%
-%%                                          %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% The '3p' and 'times' class options of elsarticle are used for Elsevier CRC
 \documentclass[twocolumn,10pt,final]{asme2ej}
 
-%% The ecrc package defines commands needed for running heads and logos.
-%% For running heads, you can set the journal name, the volume, the starting page and the authors
 
-%% The choice of journal logo is determined by the \jid and \jnltitlelogo commands.
-%% A user-supplied logo with the name <\jid>logo.pdf will be inserted if present.
-%% e.g. if \jid{yspmi} the system will look for a file yspmilogo.pdf
-%% Otherwise the content of \jnltitlelogo will be set between horizontal lines as a default logo
-
-%% Hereafter the template follows `elsarticle'.
-%% For more details see the existing template files elsarticle-template-harv.tex and elsarticle-template-num.tex.
-
-%% Elsevier CRC generally uses a numbered reference style
-%% For this, the conventions of elsarticle-template-num.tex should be followed (included below)
-%% If using BibTeX, use the style file elsarticle-num.bst
 
 %% End of ecrc-specific commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,149 +11,57 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 
-%% natbib.sty is loaded by default. However, natbib options can be
-%% provided with \biboptions{...} command. Following options are
-%% valid:
-
-%%   round  -  round parentheses are used (default)
-%%   square -  square brackets are used   [option]
-%%   curly  -  curly braces are used      {option}
-%%   angle  -  angle brackets are used    <option>
-%%   semicolon  -  multiple citations separated by semi-colon
-%%   colon  - same as semicolon, an earlier confusion
-%%   comma  -  separated by comma
-%%   numbers-  selects numerical citations
-%%   super  -  numerical citations as superscripts
-%%   sort   -  sorts multiple citations according to order in ref. list
-%%   sort&compress   -  like sort, but also compresses numerical citations
-%%   compress - compresses without sorting
-%%
-%% \biboptions{comma,round}
-
-% \biboptions{}
-
 % if you have landscape tables
 \usepackage[figuresright]{rotating}
 
-% put your own definitions here:
-%   \newcommand{\cZ}{\cal{Z}}
-%   \newtheorem{def}{Definition}[section]
-%   ...
-
-% add words to TeX's hyphenation exception list
-%\hyphenation{author another created financial paper re-commend-ed Post-Script}
-
-% declarations for front matter
-
 \begin{document}
 
-%% Title, authors and addresses
-
-%% use the tnoteref command within \title for footnotes;
-%% use the tnotetext command for the associated footnote;
-%% use the fnref command within \author or \address for footnotes;
-%% use the fntext command for the associated footnote;
-%% use the corref command within \author for corresponding author footnotes;
-%% use the cortext command for the associated footnote;
-%% use the ead command for the email address,
-%% and the form \ead[url] for the home page:
-%%
-%% \title{Title\tnoteref{label1}}
-%% \tnotetext[label1]{}
-%% \author{Name\corref{cor1}\fnref{label2}}
-%% \ead{email address}
-%% \ead[url]{home page}
-%% \fntext[label2]{}
-%% \cortext[cor1]{}
-%% \address{Address\fnref{label3}}
-%% \fntext[label3]{}
-
-%% use optional labels to link authors explicitly to addresses:
-%% \author[label1,label2]{<author name>}
-%% \address[label1]{<address>}
-%% \address[label2]{<address>}
-
-% \maketitle
-\noindent\textbf{\centering \Large{Rotating Scatter Mask Optimization for Gamma Source Direction Identification}}
+\noindent\textbf{\centering \large{Rotating Scatter Mask Optimization for Gamma Source Direction Identification}}
 
 \noindent
 \begin{tabular}{l}
 \rule{3.2in}{0.02in}
 \end{tabular}
 
-\noindent\textbf{\centering Darren E. Holland$^a$, James E. Bevins$^b$, Larry W. Burggraf$^b$, Buckley E. O'Day$^b$}
+\noindent {\centering Darren E. Holland$^1$, James E. Bevins$^2$, Larry W. Burggraf$^2$, Buckley E. O'Day$^2$}
 \vspace{0.1in}
 
-\symbolfootnote[a]{\centering\ Department of Mechanical Engineering\\
-	Cedarville University \\
-	Cedarville, OH 45502 USA\\}
-\symbolfootnote[b]{\centering\ Department of Engineering Physics\\
-	Air Force Institute of Technology \\
-	Wright-Patterson AFB, OH\\}
+\symbolfootnote[1]{\centering\ Department of Mechanical Engineering\\
+	Cedarville University, Cedarville, OH 45502 USA\\}
+\symbolfootnote[2]{\centering\ Department of Engineering Physics\\
+	Air Force Institute of Technology,	WPAFB, OH\\}
 
 \section{Abstract}
 \textbf{
 Rotating scattering masks have shown promise as an inexpensive, lightweight method with a large field-of-view for identifying the direction of a gamma emitting source
 or sources.  However, further examination of the current rotating scattering mask design shows that the identification could be improved to reduce or eliminate degenerate solutions and improve required count times by changing the geometry.  
-These changes should produce more linearly independent characteristics for the mask, resulting in a decrease in the mis-identification probability.  
 Three approaches are introduced to generate alternative mask geometries.
-The eigenvector method uses a spring-mass system to create a geometry basis.  The binary approach uses ones and zeros to represent the geometry with many possible
-combinations allowing for additional design flexibility.  
+The eigenvector method uses a spring-mass system to create a geometry basis.  The binary approach uses ones and zeros to represent the geometry.  
 Finally, a Hadamard matrix is modified to examine a decoupled geometric solution.   
 Four criteria are proposed for evaluating these methodologies.
 An analysis of the resulting detector response matrices demonstrates that these methodologies produced 
-superior identification characteristics than the original design.  The eigenvector approach produces the least linearly dependent results, but exhibits a decrease
-in average efficiency.  The binary results are more linearly dependent than the eigenvector approach, but this design achieves a higher average efficiency than than original.  
-The Hadamard-based method produced a lower maximum, but a higher average linear dependence than the original design.
-Further possible design enhancements are discussed.}
+superior identification characteristics than the original design.}
 
 %% main text
 \section{Introduction}
 \label{intro}
 Identifying a gamma source's direction is important in a variety of applications such as providing security, treaty compliance verification, and locating orphan sources.  
-Three general categories exist for gamma source direction identification; count-based systems, collimator and coded aperture systems, and Compton cameras.
 A novel, alternative approach, similar in concept to the coded aperture system, exists that eliminates many of the limitations of alternative approaches.
 This system utilizes a mask placed over a single position-insensitive detector \cite{FitzGerald2015}.  
 The system records energy spectra as a function of the geometrically varying mask, which is accomplished through a set, constant rotation of the mask. 
 The position dependent spectra obtained, referred to as detector response curves (DRCs), depend on the source position and can be used to identify the source direction.  FitzGerald's mask geometry results in some DRCs that are nearly identical, which can lead to mis-identification of the source direction.  
 This work seeks to reduce the DRCs' linear dependence by optimizing the mask's geometry.
 
-FitzGerald introduced the RSM that has a 14 inch diameter and surrounds a 3 x 3 inch cylindrical NaI scintillating detector \cite{FitzGerald2015}. 
-His original MCNP model contained 31 elements or one element every $11.6^\circ$.  
-In order to increase the accuracy of the geometric representations,  the model's angular resolution was later increased to every degree.  
-
-FitzGerald's design methodology assumes that the detector response is related to the mask geometry.  
-Without this assumption, intentional mask design degenerates into random trial and error.
-In addition, he proposed three desirable characteristics for the RSM system.  
-First, for any given initial source position, there is a unique response curve generated as the mask rotates 360$^\circ$.  
-This condition is necessary as a non-unique response would make at least two initial source position DRCs indistinguishable and a unique identification impossible.
-
 \section{RSM Design} \label{sec:rsm-design}
-Logan et al.\cite{Logan2017} showed statistical agreement between experimental and simulated DRCs using GEANT4 \cite{Agostinelli03} and simulated to simulated DRCs using GEANT4 and MCNP \cite{Goorley13}.
-Thus, this work will use MCNP to simulate the experimental DRCs needed for evaluating each RSM design's performance.  
+This work uses MCNP to simulate the experimental DRCs needed for evaluating each RSM design's performance.  
 Instead of using only the full energy peak (FEP), the DRC for this work is formed by summing all counts above 200keV to increase the source direction identification's efficiency.  
 The 200keV limit was chosen as Logan et al. noted discrepancies for counts below this value due to scatter in the environmental elements not considered in the model \cite{Logan2017}.
 
-Originally, both the analysis of FitzGerald's RSM and the new designs were to be discretized into 10$^\circ$ increments in $\theta$ and 5$^\circ$ in $\phi$.  
-However, due to requirements for the Hadamard method, (which is discussed in Section~\ref{sec:decoupling})
-the proposed designs are broken into 32 discrete angles in $\theta$ resulting in $\Delta\theta=11.25^\circ$ and $\Delta\phi=5.625^\circ$ for 30 angles in $\phi$.
-
 The RSM design is to be optimized for a $^{137}$Cs point source located 36 inches from the center of the detector, mimicking Logan et. al's setup \cite{Logan2017}.  
 To simulate the relative source rotation in MCNP, the mask is stationary, while the source is rotated in spherical coordinates every degree for $\theta$ from 0 to $348.75^\circ$ and for each $\phi$ from 5.625$^\circ$ to $168.75^\circ$.  
-The modeled NaI detector includes a 1/8 inch 2024 Aluminum alloy sleeve on which the acrylic RSM is placed. 
-The maximum width of the RSM depends on the methodology, but the maximum mask thickness is a constant 7.87 inches (20 cm).  
-A sphere of air surrounds the source and detector, and all other environmental factors were ignored.  
 To increase the solution convergence rate, particles were emitted within a $27.26^\circ$ half angle cone extending from the source to the detector's center.  
-This variance reduction technique assumes that the effect of the few particles that 
-scatter in the air outside of the cone, though the mask, and into the detector will have negligible contributions to the simulated DRCs.   
-In addition, a 0.095 inch air gap between the mask and aluminum sleeve constrains the mask geometry from impinging on the sleeve and provides a space for grease to be applied between the moving parts.
-Finally, due to manufacturing constraints, each mask angle must have a non-zero thickness.
 
 \subsection{Design Assumptions and Limitations}
-To best enable source direction identification, a unique set of DRCs must be obtained. 
-The complete set of DRCs for all rotations angles forms the design response matrix (DRM).
-The primary criterion for the design choice will be the design with the most unique DRM.  
-
 For this application, it is desirable that the curve generated at each initial source position be orthogonal - a.k.a. unique - to the others.  
 Let this curve be denoted $\mathbf{DRC}_{i,j},$ where $i=0,1,...,n$ is the initial $\theta$ and $j=0,1,...,m$ is the initial $\phi$ index relative to a reference location on the mask.  
 Since the mask rotates, the $i^{th}$ DRC will be identical to the $g^{th}$ DRC shifted by $g-i$ indices.  
@@ -211,110 +73,41 @@ The duplication due to periodicity would fail to meet the design's uniqueness re
 The modal assurance criterion (MAC) is a normalized number that indicates the similarity between two vectors \cite{Allemang03}.
 A MAC value of zero indicates the two vectors are orthogonal, while a value of one indicates that they are identical.  
 
-Logan's work established a connection between the measured and the simulated DRCs.
-Thus, assuming the measured response can be represented by the simulated spectrum, it is possible to analyze the uniqueness of the design by comparing each DRC with every other possible DRC to find the worst performance.  Eqn.~\ref{eq:mac} defines the MAC number as
-
+Thus, assuming the measured response can be represented by the simulated spectrum, it is possible to analyze the uniqueness of the design by comparing each DRC with every other possible DRC to find the worst performance.  Considering all vector shifts, the maximum MAC number, which corresponds to the most similar pair of DRCs is given in Eqn.~\ref{eq:maxmac}.
 \begin{equation}
-MAC_{g,h,i,j}=\frac{\left(\mathbf{u}_{g,h}^T\mathbf{v}_{i,j}\right)^2}{\left(\mathbf{u}_{g,h}^T\mathbf{u}_{g,h}\right)\left(\mathbf{v}_{i,j}^T\mathbf{v}_{i,j}\right)},
-\label{eq:mac}
-\end{equation}
-
-\noindent where $\mathbf{u}_{g,h}$ and $\mathbf{v}_{i,j}$ are the DRCs for the respective initial positions $\left(\theta=g\Delta\theta,\phi=h\Delta\phi\right)$ and
-$\left(\theta=i\Delta\theta,\phi=j\Delta\phi\right)$.
-
-Considering all vector shifts, the maximum MAC number, which corresponds to the most similar pair of DRCs is given in Eqns.~\ref{eq:maxmac}.
-
-\begin{equation}
-M=max_{g,h,i,j}\left(MAC_{g,h,i,j}\right),
+M=max_{g,h,i,j}\left(\frac{\left(\mathbf{u}_{g,h}^T\mathbf{v}_{i,j}\right)^2}{\left(\mathbf{u}_{g,h}^T\mathbf{u}_{g,h}\right)\left(\mathbf{v}_{i,j}^T\mathbf{v}_{i,j}\right)}\right),
 \label{eq:maxmac}
 \end{equation}
-
-\noindent where $g\neq i$ and $h\neq j$.  An examination of Eqn.~\ref{eq:maxmac} shows that a bias in vectors $u$ and $v$ will result in a non-zero $M$ value.  
-Thus, the DRCs are normalized such that each one is zero mean over $\theta$.  
-These normalized DRCs form the reduced DRM or $\bf{DRM_{red}}$. 
+\noindent where $\mathbf{u}_{g,h}$ and $\mathbf{v}_{i,j}$ are the DRCs for the respective initial positions $\left(\theta=g\Delta\theta,\phi=h\Delta\phi\right)$ and
+$\left(\theta=i\Delta\theta,\phi=j\Delta\phi\right)$, and $g\neq i$ and $h\neq j$.
 
 \subsection{Design Methodologies} \label{design-methods}
-There are two general classes for the geometry creation.  
-The first method assumes that both the initial $\theta$ and $\phi$ positions are to be identified.  
-The second approach uses a geometric marker, which allows the initial $\theta$ location to be calculated.  
-This assumption simplifies the $\theta$ identification and removes the $\theta$ shift effects.  
-Both of these classes create a two dimensional matrix, which is mapped as the mask thickness to three dimensional space using spherical coordinates.
-
-\subsubsection{Identifying $\theta$ and $\phi$}
 It is impossible to create linearly independent DRCs.  
 So, the optimized design objective is to create a design with the least amount of linear dependence.  
 The three following methods are tailored to create designs for identifying both $\theta$ and $\phi$ with a low linear dependence.  
-The eigenvector approach shown in Section~\ref{sec:eigen} solves a mass normalized eigenvalue problem.  
-The binary method described in Section~\ref{sec:binary} uses patterns of ones and zeros to represent the geometry.
-Lastly, Hadamard approach used for rotating encoding masks was modified and applied.
-
-\subsubsection{Binary Approach} \label{sec:binary}
-The binary approach uses ones and zeros to represent the geometry thickness.  
-Notice that the mask's cyclic nature causes vectors such as [1 1 0 0] to be the same as [1 0 0 1], where the first vector is the second shifted by one entry to the right.  
-If the design uses binary patterns such as these two, the DRCs for two initial positions will be identical.  
-For $n=32$, there are many possible basis vectors; especially considering that the vectors can be shifted left or right (corresponding to multiplication or division by 2), and the $\phi$ vector order (1st, 2nd, 3rd, etc) may be swapped.  
-This flexibility allows one to create unique geometries, mechanically balance the mask, or improve the likelihood of obtaining a signal given a random source position by more evenly spreading the ones and zeros around the mask.
-
-\subsubsection{Decoupling $\theta$ and $\phi$}
-\label{sec:decoupling}
-An alternative approach introduces additional material to create a low measurement ``dead" zone at a consistent $\theta$ position.  
-As a result, the initial $\theta$ position is assumed to be the angular distance difference between the start of the measurement and the minimum measurement location.  
-As the initial $\theta$ position is known, the reference DRM angle may be changed to the known $\theta$ position by shifting the basis matrix entries by the corresponding index number.
-This knowledge decouples the $\theta$ and $\phi$ identification, resulting in only needing to compare the measured DRC to the $m$ $\phi$ curves in $\mathbf{DRM}_{red}$.  
-Using this method, it is possible to create $m$ linearly independent geometric basis vectors.
-
-One such linearly independent basis is the Hadamard matrix, which has been used in the design of stationary encoding masks in the fields of spectrometry and imaging \cite{Sloane76, Dyer91, Finger85}. 
-
-The Hadamard matrix is thought to only exist for square matrices where $n$ is 1, 2, or divisible by 4 \cite{Sloane76}.  
-By construction, the mask design under consideration is discretized in order to have $n=32$.  
-Also, a Hadamard matrix has ones and negative ones.  
-To convert it to a binary pattern, the negative one entries were changed to zeros.
-In order to create the "dead" zone, the vector of ones corresponding to $\theta=0$ were changed to twos.  
-A normalized geometry resulted by following the same steps as outlined in the eigenvector approach.
+The eigenvector approach solves a mass normalized eigenvalue problem.  
+The binary method uses patterns of ones and zeros to represent the geometry.
+Lastly, the Hadamard approach used for rotating encoding masks was modified and applied.
 
 \subsection{Design Evaluation}
 \label{sec:Eval}
 To assess the design optimality, four criteria relevant to the performance of the RSM are proposed.  The first, the maximum MAC value, was discussed in Section~\ref{sec:MAC}.  
-The average MAC number, $A$, is given in Eqn.~\ref{eq:avgmac} and provides information about the mean linear dependence.
-\begin{equation}
-A=\frac{1}{b}\sum_{g,h,i,j}\left(MAC_{g,h,i,j}\right),
-\label{eq:avgmac}
-\end{equation}
-
-\noindent where $g\neq i$, $h\neq j$, and $b$ is the total number of combinations.
-For the $n=32$ and $m=30$ mask design, $b=14850$.  The optimal design should have low $M$ and $A$ values.
-
+In addition, the average MAC number, $A$, provides information about the mean linear dependence.  
 The third criteria measures the RSM's average efficiency for a mask cell. 
 A high-efficiency design produces more accurate results in less measurement time, an important factor to consider for the intended applications of the RSM.  
-This value is calculated as 
-
-\begin{equation}
-\epsilon=\frac{\sum_{i,j}\mathbf{DRM}_{red}}{n\ m},
-\label{eq:avgcell}
-\end{equation}
-
-\noindent where $n\ m$ is the total number of mask cells.
-
 The final evaluation criterion focuses on the design's sensitivity.  
-The ratio of the maximum to minimum response in Eqn.~\ref{eq:sens} provides information on the relative amount of measurement time required and the measurement's sensitivity to random measurement noise. 
+The ratio of the maximum to minimum response provides information on the relative amount of measurement time required and the measurement's sensitivity to random measurement noise. 
 
-\begin{equation}
-S=min_{j}\left(\frac{max_{i} \left[\mathbf{DRM}_{red}\right]}{min_{i} \left[\mathbf{DRM}_{red}\right]}\right).
-\label{eq:sens}
-\end{equation}
-
-\section{Results and Analysis} \label{sec:results}
-The proposed design methodologies produced the geometries shown in Figs.~\ref{fig:EVGeo} to \ref{fig:HadGeo}.
-
+The proposed design methodologies produced the geometries shown in Figs.~\ref{fig:EVGeo} to \ref{fig:HadGeo}.  The FitzGerald's RSM was used as a baseline to establish the design improvement for the RSM designs shown in these figures. 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width={2.0in}]{../figs/EVGeo.pdf}
+\includegraphics[width={1.5in}]{../figs/EVGeo.pdf}
 \caption{RSM geometry created by the eigenvector approach.}
 \label{fig:EVGeo}
 \end{figure}
 
 \begin{figure}[ht!]
-\includegraphics[width={2.0in}]{../figs/BiGeo.pdf}
+\includegraphics[width={1.5in}]{../figs/BiGeo.pdf}
 \centering
 \caption{RSM geometry created by the binary approach.}
 \label{fig:BiGeo}
@@ -322,19 +115,17 @@ The proposed design methodologies produced the geometries shown in Figs.~\ref{fi
 \end{figure}
 \begin{figure}[ht!]
 \centering
-\includegraphics[width={2.0in}]{../figs/HadGeo.pdf}
+\includegraphics[width={1.5in}]{../figs/HadGeo.pdf}
 \caption{RSM geometry created by the Hadamard approach.}
 \label{fig:HadGeo}
 \end{figure}
 
 The eigenvector approach used 32 $k$ values from 0.1 to -0.2999 in increments of -0.0129 with stiffness coupling to the nearest two neighbors on both sides of the mass.
-$c$ was determined to be 0.999 from the design surface minimization depicted in Fig~\ref{fig:surf}.  
+$c$ was determined to be 0.999 from the design surface minimization.  
 Other coupled systems did not have an optimal $c$ value close to one.
 
 The binary pattern was constructed to have a fin that spirals around the mask.  
-As it is not possible to have the fin completely cover the mask geometry, four other vectors were added to create the necessary basis.
-
-The FitzGerald's RSM was used as a baseline to establish the design improvement for the RSM designs shown in Figs.~\ref{fig:EVGeo} to \ref{fig:HadGeo}.  
+As it is not possible to have the fin completely cover the mask geometry, four other vectors were added to create the necessary basis. 
 
 Table~\ref{table:results} summarizes the evaluation results for the original RSM, binary, eigenvector (EV), and Hadamard approaches.  
 Recall that the Hadamard values correspond to those obtained without shifting vectors since the initial $\theta$ position can be deduced.
