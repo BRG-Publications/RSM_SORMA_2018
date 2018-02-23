@@ -23,48 +23,49 @@
 \rule{3.2in}{0.02in}
 \end{tabular}
 
-\noindent {\centering Darren E. Holland$^1$, James E. Bevins$^2$, Larry W. Burggraf$^2$, Buckley E. O'Day$^2$}
+\noindent {\centering Darren E. Holland$^a$, James E. Bevins$^b$, Larry W. Burggraf$^b$, Buckley E. O'Day$^b$}
 \vspace{0.1in}
 
-\symbolfootnote[1]{\centering\ Department of Mechanical Engineering\\
-	Cedarville University, Cedarville, OH 45502 USA\\}
-\symbolfootnote[2]{\centering\ Department of Engineering Physics\\
-	Air Force Institute of Technology,	WPAFB, OH\\}
+{\centering[a] Department of Mechanical Engineering\\
+	Cedarville University, Cedarville, OH 45502\\}
+{\centering[b] Department of Engineering Physics\\
+	Air Force Institute of Technology,	WPAFB, OH 45434\\}
 
 \section{Abstract}
 \textbf{
-Rotating scattering masks have shown promise as an inexpensive, lightweight method with a large field-of-view for identifying the direction of a gamma emitting source
-or sources.  However, further examination of the current rotating scattering mask design shows that the identification could be improved to reduce or eliminate degenerate solutions and improve required count times by changing the geometry.  
+Rotating scattering masks (RSMs) have shown promise as an inexpensive method for identifying a gamma source's direction.  
+However, further examination of the current RSM design shows that changing the geometry may improve the identification by 
+reducing or eliminating degenerate solutions and lower the required count times.  
 Three approaches are introduced to generate alternative mask geometries.
 The eigenvector method uses a spring-mass system to create a geometry basis.  The binary approach uses ones and zeros to represent the geometry.  
 Finally, a Hadamard matrix is modified to examine a decoupled geometric solution.   
 Four criteria are proposed for evaluating these methodologies.
-An analysis of the resulting detector response matrices demonstrates that these methodologies produced 
-superior identification characteristics than the original design.}
+An analysis of the resulting detector response matrices demonstrates that the binary and eigenvector methodologies produced 
+superior identification characteristics.}
 
 %% main text
 \section{Introduction}
 \label{intro}
 Identifying a gamma source's direction is important in a variety of applications such as providing security, treaty compliance verification, and locating orphan sources.  
-A novel, alternative approach, similar in concept to the coded aperture system, exists that eliminates many of the limitations of alternative approaches.
+A novel approach, similar in concept to the coded aperture system, exists that eliminates many of the limitations of alternative approaches.
 This system utilizes a mask placed over a single position-insensitive detector \cite{FitzGerald2015}.  
-The system records energy spectra as a function of the geometrically varying mask, which is accomplished through a set, constant rotation of the mask. 
-The position dependent spectra obtained, referred to as detector response curves (DRCs), depend on the source position and can be used to identify the source direction.  FitzGerald's mask geometry results in some DRCs that are nearly identical, which can lead to mis-identification of the source direction.  
+The system records energy spectra as a function of the geometrically varying mask, which is accomplished through a set, constant mask rotation. 
+The obtained position dependent spectra, referred to as detector response curves (DRCs), depend on the source position and can be used to identify the source direction.  FitzGerald's mask geometry results in some DRCs that are nearly identical, which can lead to mis-identification of the source direction.  
 This work seeks to reduce the DRCs' linear dependence by optimizing the mask's geometry.
 
 \section{RSM Design} \label{sec:rsm-design}
 This work uses MCNP to simulate the experimental DRCs needed for evaluating each RSM design's performance.  
-Instead of using only the full energy peak (FEP), the DRC for this work is formed by summing all counts above 200keV to increase the source direction identification's efficiency.  
+Instead of using only the full energy peak (FEP), the DRC is formed by summing all counts above 200keV to increase the source direction identification's efficiency.  
 The 200keV limit was chosen as Logan et al. noted discrepancies for counts below this value due to scatter in the environmental elements not considered in the model \cite{Logan2017}.
 
 The RSM design is to be optimized for a $^{137}$Cs point source located 36 inches from the center of the detector, mimicking Logan et. al's setup \cite{Logan2017}.  
-To simulate the relative source rotation in MCNP, the mask is stationary, while the source is rotated in spherical coordinates every degree for $\theta$ from 0 to $348.75^\circ$ and for each $\phi$ from 5.625$^\circ$ to $168.75^\circ$.  
+To simulate the relative source rotation in MCNP, the mask is stationary, while the source is rotated in spherical coordinates every $11.25^\circ$ increment for $\theta$ from 0 to $348.75^\circ$ and each $5.625^\circ$ increment for $\phi$ from 5.625$^\circ$ to $168.75^\circ$.  
 To increase the solution convergence rate, particles were emitted within a $27.26^\circ$ half angle cone extending from the source to the detector's center.  
 
 \subsection{Design Assumptions and Limitations}
 For this application, it is desirable that the curve generated at each initial source position be orthogonal - a.k.a. unique - to the others.  
 Let this curve be denoted $\mathbf{DRC}_{i,j},$ where $i=0,1,...,n$ is the initial $\theta$ and $j=0,1,...,m$ is the initial $\phi$ index relative to a reference location on the mask.  
-Since the mask rotates, the $i^{th}$ DRC will be identical to the $g^{th}$ DRC shifted by $g-i$ indices.  
+Since the mask rotates, the $i^{th}$ DRC will be identical to $\mathbf{DRC}_{g,j}$ shifted by $g-i$ indices.  
 A negative number corresponds to a shift to the left and a positive number a shift to the right.  
 This property greatly impacts the mask design as any periodic vector with respect to $\theta$ will then result in duplicate $i$ and $g$ DRCs.  
 The duplication due to periodicity would fail to meet the design's uniqueness requirements.
@@ -82,32 +83,32 @@ M=max_{g,h,i,j}\left(\frac{\left(\mathbf{u}_{g,h}^T\mathbf{v}_{i,j}\right)^2}{\l
 $\left(\theta=i\Delta\theta,\phi=j\Delta\phi\right)$, and $g\neq i$ and $h\neq j$.
 
 \subsection{Design Methodologies} \label{design-methods}
-It is impossible to create linearly independent DRCs.  
+It is impossible to create a full set of linearly independent DRCs.  
 So, the optimized design objective is to create a design with the least amount of linear dependence.  
 The three following methods are tailored to create designs for identifying both $\theta$ and $\phi$ with a low linear dependence.  
 The eigenvector approach solves a mass normalized eigenvalue problem.  
 The binary method uses patterns of ones and zeros to represent the geometry.
-Lastly, the Hadamard approach used for rotating encoding masks was modified and applied.
+Lastly, the Hadamard approach used for rotating encoding masks is modified and applied.
 
 \subsection{Design Evaluation}
 \label{sec:Eval}
 To assess the design optimality, four criteria relevant to the performance of the RSM are proposed.  The first, the maximum MAC value, was discussed in Section~\ref{sec:MAC}.  
 In addition, the average MAC number, $A$, provides information about the mean linear dependence.  
-The third criteria measures the RSM's average efficiency for a mask cell. 
-A high-efficiency design produces more accurate results in less measurement time, an important factor to consider for the intended applications of the RSM.  
-The final evaluation criterion focuses on the design's sensitivity.  
+The third criteria measures the RSM's average efficiency ($\epsilon$) for a mask cell. 
+A high-efficiency design produces more accurate results in less measurement time, an important factor to consider for the intended RSM applications.  
+The final evaluation criterion focuses on the design's sensitivity (S).  
 The ratio of the maximum to minimum response provides information on the relative amount of measurement time required and the measurement's sensitivity to random measurement noise. 
 
 The proposed design methodologies produced the geometries shown in Figs.~\ref{fig:EVGeo} to \ref{fig:HadGeo}.  The FitzGerald's RSM was used as a baseline to establish the design improvement for the RSM designs shown in these figures. 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width={1.5in}]{../figs/EVGeo.pdf}
+\includegraphics[width={1.9in}]{../figs/EVGeo.pdf}
 \caption{RSM geometry created by the eigenvector approach.}
 \label{fig:EVGeo}
 \end{figure}
 
 \begin{figure}[ht!]
-\includegraphics[width={1.5in}]{../figs/BiGeo.pdf}
+\includegraphics[width={1.9in}]{../figs/BiGeo.pdf}
 \centering
 \caption{RSM geometry created by the binary approach.}
 \label{fig:BiGeo}
@@ -115,20 +116,18 @@ The proposed design methodologies produced the geometries shown in Figs.~\ref{fi
 \end{figure}
 \begin{figure}[ht!]
 \centering
-\includegraphics[width={1.5in}]{../figs/HadGeo.pdf}
+\includegraphics[width={1.9in}]{../figs/HadGeo.pdf}
 \caption{RSM geometry created by the Hadamard approach.}
 \label{fig:HadGeo}
 \end{figure}
 
-The eigenvector approach used 32 $k$ values from 0.1 to -0.2999 in increments of -0.0129 with stiffness coupling to the nearest two neighbors on both sides of the mass.
-$c$ was determined to be 0.999 from the design surface minimization.  
-Other coupled systems did not have an optimal $c$ value close to one.
+The eigenvector approach used 32 stiffness values ranging from 0.1 to -0.2999 in increments of -0.0129 with stiffness coupling to the nearest two neighbors on both sides of the mass.
+$c$ (a linear dependence scalar) was determined to be 0.999 from a design geometry minimization step.  
 
 The binary pattern was constructed to have a fin that spirals around the mask.  
 As it is not possible to have the fin completely cover the mask geometry, four other vectors were added to create the necessary basis. 
 
 Table~\ref{table:results} summarizes the evaluation results for the original RSM, binary, eigenvector (EV), and Hadamard approaches.  
-Recall that the Hadamard values correspond to those obtained without shifting vectors since the initial $\theta$ position can be deduced.
 
 \begin{table}[ht]
 \caption{Evaluation criteria comparisons from the original design and the three proposed designs from this work.} % title of Table
