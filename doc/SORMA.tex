@@ -45,14 +45,14 @@ Three approaches are introduced to generate alternative mask geometries.
 The eigenvector method uses a spring-mass system to create a geometry basis.  The binary approach uses ones and zeros to represent the geometry.  
 Finally, a Hadamard matrix is modified to examine a decoupled geometric solution.   
 Four criteria, the max and average modal assurance criteria, efficiency, and sensitivity, are proposed for evaluating the new RSM designs generated from each of these methodologies.
-An analysis of the resulting detector response matrices demonstrates that the binary and eigenvector methodologies produced 
+An analysis of the resulting detector response matrices demonstrates that the binary and eigenvector methodologies produced masks with
 superior identification characteristics as compared to existing RSM designs.}
 
 %% main text
 \vspace{-0.3 cm}
 \section{Introduction}
 \label{intro}
-Identifying a gamma source's direction is important in a variety of applications such as providing security, treaty compliance verification, and locating orphan sources.  
+Identifying a gamma source's direction is important in a variety of applications such as portal monitoring, treaty compliance verification, and locating orphan sources.  
 A novel method, similar in concept to the coded aperture system, was introduced that eliminates many of the limitations of alternative approaches.
 This system utilizes a mask placed over a single position-insensitive detector \cite{FitzGerald2015}.  
 The system records energy spectra as a function of the geometrically varying mask, which is accomplished through a set, constant mask rotation. 
@@ -61,7 +61,7 @@ This work seeks to reduce the DRCs' linear dependence by optimizing the mask's g
 
 \vspace{-0.3 cm}
 \section{RSM Design} \label{sec:rsm-design}
-This work uses MCNP to simulate the experimental DRCs needed for evaluating each RSM design's performance.  
+This work uses MCNP to simulate the experimental DRCs needed to evaluate each RSM design's performance.  
 Instead of using only the full energy peak (FEP), the DRC is formed by summing all counts above 200keV to increase the source direction identification's efficiency.  
 The 200keV limit was chosen as Logan et al. noted discrepancies for counts below this value due to scatter in environmental elements not considered in the model \cite{Logan2017}.
 
@@ -71,7 +71,7 @@ To increase the solution convergence rate, particles were emitted within a $27.2
 
 \vspace{-0.2 cm}
 \subsection{Design Assumptions and Limitations}
-For this application, it is desirable that the curve generated at each initial source position be orthogonal - a.k.a. unique - to the others.  
+For this application, it is desirable that the curve generated at each initial source position be unique, i.e. orthogonal to all other curves associated with the other source positions.  
 Let this curve be denoted $\mathbf{DRC}_{i,j},$ where $i=0,1,...,n$ is the initial $\theta$ and $j=0,1,...,m$ is the initial $\phi$ index relative to a reference location on the mask.  
 Since the mask rotates, the $i^{th}$ DRC will be identical to $\mathbf{DRC}_{g,j}$ shifted by $g-i$ indices.  
 A negative number corresponds to a shift to the left and a positive number a shift to the right.  
@@ -93,7 +93,7 @@ $\left(\theta=i\Delta\theta,\phi=j\Delta\phi\right)$, and $g\neq i$ and $h\neq j
 
 \vspace{-0.2 cm}
 \subsection{Design Methodologies} \label{design-methods}
-It is impossible to create a full set of linearly independent DRCs.  
+It is mathematically impossible to create a full set of linearly independent DRCs.  
 Therefore, the optimized design objective is to create a design with the least amount of linear dependence.  
 The three following methods are tailored to create designs for identifying both $\theta$ and $\phi$ with a low linear dependence.  
 The eigenvector approach solves a mass normalized eigenvalue problem.  
@@ -116,39 +116,39 @@ The FitzGerald's RSM was used as a baseline to establish the design improvement 
 The eigenvector approach, shown in Fig.~\ref{fig:EVGeo}, used 32 stiffness values ranging from 0.1 to -0.2999 in increments of -0.0129 with stiffness coupling to the nearest two neighbors on both sides of the mass.
 A linear dependence scalar was determined to be 0.999 from a design geometry minimization.
 
-\vspace{-0.2 cm}
+\vspace{-0.5 cm}
 \begin{figure}[ht!]
 \centering
-\includegraphics[width={1.85in}]{../figs/EVGeo.pdf}
+\includegraphics[width={1.8in}]{../figs/EVGeo.pdf}
 \caption{RSM geometry created by the eigenvector approach.}
 \label{fig:EVGeo}
 \end{figure}
-\vspace{-0.3 cm}
+\vspace{-0.5 cm}
 
 The binary pattern was constructed to have a fin that spirals around the mask as shown in Fig~\ref{fig:BiGeo}.  
 As it is not possible to have the fin completely cover the mask geometry, four other vectors were added to create the necessary basis. 
 
-\vspace{-0.2 cm}
+\vspace{-0.5 cm}
 \begin{figure}[ht!]
-\includegraphics[width={1.85in}]{../figs/BiGeo.pdf}
+\includegraphics[width={1.8in}]{../figs/BiGeo.pdf}
 \centering
 \caption{RSM geometry created by the binary approach.}
 \label{fig:BiGeo}
 \end{figure}
-\vspace{-0.3 cm}
+\vspace{-0.5 cm}
 
 The Hadamard approach was used to create a design, shown in Fig~\ref{fig:HadGeo}, with $m$ linearly independent geometric basis vectors for $\phi$ identification.
 The reduced basis set was made possible through decoupling $\theta$ and $\phi$ with the introduction of additional material to create a low measurement ``dead" zone at a consistent $\theta$ position.  
 The evaluation results for the original RSM as well as the binary, eigenvector (EV), and Hadamard approaches are summarized in Table~\ref{table:results}.
 
-\vspace{-0.2 cm}
+\vspace{-0.5 cm}
 \begin{figure}[ht!]
 \centering
-\includegraphics[width={1.85in}]{../figs/HadGeo.pdf}
+\includegraphics[width={1.8in}]{../figs/HadGeo.pdf}
 \caption{RSM geometry created by the Hadamard approach.}
 \label{fig:HadGeo}
 \end{figure}
-\vspace{-0.3 cm}
+\vspace{-0.5 cm}
   
 \vspace{-0.6 cm}
 \begin{table}[ht]
@@ -169,10 +169,10 @@ S & 1.00 & 1.07 & 1.16 & 1.07 \\
 \end{tabular}
 \label{table:results} % is used to refer this table in the text
 \end{table}
-\vspace{-0.3 cm}
+\vspace{-0.5 cm}
 
 All of the proposed methods have lower $M$ values with the most desirable corresponding to the eigenvector approach.  
-The Hadamard method produces vectors which on average share~42.3\% of their information, which is more than the original design.  
+The Hadamard method vectors on average share~42.3\% of their information. Thus, this design performs worse than the original.  
 The rapid change between ones and zeros coupled with the spatial resolution limits make the Hadamard method non-ideal for this problem.  
 The lowest average MAC number corresponds to the eigenvector approach with only~6.63\% similarity.  
 These results indicate that the method that produces the most unique
